@@ -4,7 +4,7 @@
 
 PlayState::PlayState()
 {
-    Map::init(10, 10);
+    Map::init(2, 2);
     Map::init_draw(0, 0, Settings::screen_width, Settings::screen_height);
 }
 

@@ -11,7 +11,7 @@
 
 enum CellType
 {
-    Empty,
+    Empty = 0,
     Tower,
     Obstacle,
     Blocking_obstacle
@@ -53,6 +53,7 @@ class Map
 
     private:
         static std::string cell_to_str(CellType type);
+        static std::vector<sf::Texture> textures_;
 };
 
 #endif /* !MAP_HH */

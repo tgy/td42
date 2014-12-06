@@ -13,6 +13,7 @@
 #define B_OBSTACLE "B"
 
 std::vector<std::vector<Cell>> Map::cells;
+std::vector<sf::Texture> Map::textures_;
 std::list<std::shared_ptr<Turret>> Map::turrets;
 std::list<std::shared_ptr<Mob>> Map::ennemies;
 std::pair<int, int> Map::start_mobs;
@@ -26,8 +27,14 @@ void Map::init(unsigned width, unsigned height)
 {
     cells = std::vector<std::vector<Cell>>(width);
 
-    for (unsigned i = 0; i < height; ++i)
+    for (unsigned i = 0; i < width; ++i)
+    {
         cells[i] = std::vector<Cell>(height);
+        for (unsigned j = 0; j < height; ++j)
+            cells[i][j].type = CellType::Empty;
+    }
+    Map::width = width;
+    Map::height = height;
 }
 
 int Map::cost(const std::pair<int, int>& start,
@@ -100,26 +107,27 @@ std::string Map::cell_to_str(CellType type)
 
 void Map::init_draw(float x1, float y1, float x2, float y2)
 {
-    sf::Texture tile1;
-    if (!tile1.loadFromFile("resources/logo.png"))
+    textures_ = std::vector<sf::Texture>(4);
+    if (!textures_[Blocking_obstacle].loadFromFile("resources/tiles/block.png")
+        || !textures_[Obstacle].loadFromFile("resources/tiles/obstacle.png")
+        || !textures_[Empty].loadFromFile("resources/tiles/empty.png")
+        || !textures_[Tower].loadFromFile("resources/tiles/empty.png"))
         throw std::logic_error("Could not load tile1.");
-    auto tile_size = tile1.getSize();
     float tsize_x = (x2 - x1) / width;
     float tsize_y = (y2 - y1) / height;
-    float scale_x = tsize_x / tile_size.x;
-    float scale_y = tsize_y / tile_size.y;
     float pos_x = x1;
-    std::cout << "Starting init. Map has size of " << width << "x" << height << std::endl;
     for (unsigned x = 0; x < width; ++x, pos_x += tsize_x)
     {
         float pos_y = y1;
         for (unsigned y = 0; y < height; ++y, pos_y += tsize_y)
         {
-            std::cout << "Wrote Item at pos (" << pos_x << "," << pos_y << ")" << std::endl;
-            sf::Sprite s(tile1);
-            s.setPosition(pos_x, pos_y);
-            s.setScale(scale_x, scale_y);
+            auto tile_size = textures_[cells[x][y].type].getSize();
+            float scale_x = tsize_x / tile_size.x;
+            float scale_y = tsize_y / tile_size.y;
+            sf::Sprite s(textures_[cells[x][y].type]);
             cells[x][y].sprite = s;
+            cells[x][y].sprite.setPosition(pos_x, pos_y);
+            cells[x][y].sprite.setScale(scale_x, scale_y);
         }
     }
 }
@@ -129,5 +137,4 @@ void Map::draw(sf::RenderWindow& w)
     for (unsigned x = 0; x < width; ++x)
         for (unsigned y = 0; y < height; ++y)
             w.draw(cells[x][y].sprite);
-    w.clear();
 }

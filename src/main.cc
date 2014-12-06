@@ -19,7 +19,7 @@ void init()
 int main()
 {
     // Create the main window
-    Settings::screen_width = 800;
+    Settings::screen_width = 1000;
     Settings::screen_height = 600;
     sf::RenderWindow window(sf::VideoMode(Settings::screen_width,
                                           Settings::screen_height), "TD42");
