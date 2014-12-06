@@ -36,7 +36,7 @@ list<pair<int, int>> pathfind(const pair<int, int>& start,
             {
                 costs[next] = new_cost;
                 frontier.push(PathNode(next, new_cost));
-                came_from[next] = std::make_shared<current>;
+                came_from[next] = std::make_shared<PathNode>(current);
             }
         }
     }
