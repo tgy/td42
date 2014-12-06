@@ -1,3 +1,5 @@
+#include <cassert> //remove_a_life()
+
 #include "player.hh"
 
 Player::Player(unsigned money, unsigned life_nb)
@@ -17,6 +19,7 @@ bool Player::remove_money(unsigned money)
 
 bool Player::remove_a_life()
 {
+  assert(!life_nb_);
   life_nb_--;
   return life_nb_ > 0;
 }
