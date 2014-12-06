@@ -7,12 +7,13 @@ class Entity
     Entity(unsigned life, float x, float y, float direction,
            unsigned fixed_res = 0);
     virtual ~Entity() = default;
+
     float get_x();
     float get_y();
     float get_direction();
     unsigned get_life();
     unsigned get_life_max();
-    void set_life(unsigned life);
+
   protected:
     unsigned life_;
     unsigned life_max_;

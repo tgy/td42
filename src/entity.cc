@@ -31,8 +31,3 @@ unsigned Entity::get_life_max()
 {
   return this->life_max_;
 }
-
-void Entity::set_life(unsigned life)
-{
-  this->life_ = life > this->life_max_ ? this->life_max_ : life;
-}
