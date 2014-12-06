@@ -36,7 +36,7 @@ set_target_properties(td42 PROPERTIES COMPILE_FLAGS "${CXX_FLAGS} -O3")
 #target_link_libraries(42sh ${CMAKE_THREAD_LIBS_INIT})
 #target_link_libraries(42sh ${CURSES_LIBRARIES})
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 REQUIRED system window graphics)
 target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES})
 
