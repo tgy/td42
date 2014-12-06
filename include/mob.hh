@@ -10,7 +10,7 @@ class Mob : public Entity
 
     Mob(unsigned life, float x, float y, float direction, float speed,
         bool can_fly, unsigned reward,  unsigned fixed_res = 0,
-        unsigned power = 0, float range = 0);
+        unsigned power = 0, float range = 0, float off_x = 0, float off_y = 0);
     virtual ~Mob() = default;
     float get_speed();
     bool can_fly();

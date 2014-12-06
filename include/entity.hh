@@ -7,7 +7,7 @@ class Entity
 {
   public:
     Entity(unsigned life, float x, float y, float direction, unsigned power,
-        float range, unsigned fixed_res = 0);
+        float range, unsigned fixed_res = 0, float off_x = 0, float off_y = 0);
     virtual ~Entity() = default;
 
     bool operator<(const Entity& e);
@@ -17,7 +17,7 @@ class Entity
     unsigned get_life();
     unsigned get_life_max();
     unsigned get_power();
-    float dist_from(Entity &a);
+    float dist_from(Entity& a);
 
     bool can_view(Entity& ennemy);
     void take_attack(unsigned power);
@@ -34,8 +34,11 @@ class Entity
     unsigned power_;
     float x_;
     float y_;
+    float off_x_;
+    float off_y_;
     float direction_;
     float range_;
+    sf::Sprite sprite_;
 };
 
 #endif /* !ENTITY_HH */

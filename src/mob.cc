@@ -8,8 +8,8 @@
 
 Mob::Mob(unsigned life, float x, float y, float direction, float speed,
          bool can_fly, unsigned fixed_res, unsigned reward, unsigned power,
-         float range)
-   : Entity(life, x, y, direction, fixed_res, power, range),
+         float range, float off_x, float off_y)
+   : Entity(life, x, y, direction, fixed_res, power, range, off_x, off_y),
            can_fly_{can_fly}, reward_{reward}, old_x_{-1}, old_y_{-1}
 {
   if (speed <= 0 || speed >= 1)

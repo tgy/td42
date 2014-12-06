@@ -4,9 +4,11 @@
 #include "entity.hh"
 
 Entity::Entity(unsigned life, float x, float y, float direction,
-               unsigned power, float range, unsigned fixed_res)
+               unsigned power, float range, unsigned fixed_res, float off_x,
+               float off_y)
       : life_{life}, life_max_{life}, fixed_res_{fixed_res}, power_{power},
-        x_{x}, y_{y}, direction_{direction}, range_{range}
+        x_{x}, y_{y}, off_x_{off_x}, off_y_{off_y}, direction_{direction},
+        range_{range}
 {
 }
 

@@ -5,8 +5,8 @@
 
 Turret::Turret(unsigned life, float x, float y, float direction,
                unsigned recharge_time, unsigned fixed_res, unsigned power,
-               float range)
-   : Entity(life, x, y, direction, fixed_res, power, range),
+               float range, float off_x, float off_y)
+   : Entity(life, x, y, direction, fixed_res, power, range, off_x, off_y),
    recharge_time_(recharge_time)
 {
 }
