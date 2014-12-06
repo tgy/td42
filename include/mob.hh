@@ -15,6 +15,7 @@ class Mob : public Entity
     unsigned get_reward();
 
     void move();
+    void update_pathfinding();
 
   protected:
     float speed_;

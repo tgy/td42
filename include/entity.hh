@@ -1,15 +1,15 @@
 #ifndef ENTITY_HH
 # define ENTITY_HH
+# include <utility>
 
 class Entity
 {
   public:
     Entity(unsigned life, float x, float y, float direction, unsigned power,
-           float range, unsigned fixed_res = 0);
+        float range, unsigned fixed_res = 0);
     virtual ~Entity() = default;
 
-    float get_x();
-    float get_y();
+    std::pair<float, float> get_pos();
     float get_direction();
     float get_range();
     unsigned get_life();

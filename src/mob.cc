@@ -21,3 +21,7 @@ bool Mob::can_fly()
 void Mob::move()
 {
 }
+
+void Mob::update_pathfinding()
+{
+}
