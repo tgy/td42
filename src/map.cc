@@ -2,11 +2,20 @@
 
 #include "map.hh"
 
+//#define START "S"
+#define TOWER "T"
+#define EMPTY "E"
+//#define FINNISH "F"
+#define OBSTACLE "O"
+#define B_OBSTACLE "B"
+
 std::vector<std::vector<CellType>> Map::cells;
 std::list<std::shared_ptr<Turret>> Map::turrets;
 std::list<std::shared_ptr<Mob>> Map::ennemies;
 std::pair<int, int> Map::start_mobs;
 std::pair<int, int> Map::finish_mobs;
+unsigned Map::width;
+unsigned Map::height;
 
 void Map::init(unsigned width, unsigned height)
 {
@@ -72,9 +81,13 @@ std::string Map::cell_to_str(CellType type)
     switch (type)
     {
         case CellType::Tower:
-            return "T";
+            return TOWER;
         case CellType::Empty:
-            return " ";
+            return EMPTY;
+        case CellType::Obstacle:
+            return OBSTACLE;
+        case CellType::Blocking_obstacle:
+            return B_OBSTACLE;
         default:
             return "U";
     }

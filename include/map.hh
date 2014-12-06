@@ -2,7 +2,7 @@
 # define MAP_HH
 
 # include <list>
-#include <vector>
+# include <vector>
 # include <memory>
 
 # include "mob.hh"
@@ -11,12 +11,14 @@
 enum CellType
 {
     Empty,
-    Tower
+    Tower,
+    Obstacle,
+    Blocking_obstacle
 };
 
 class Map
 {
-public:
+  public:
     static std::list<std::shared_ptr<Mob>> ennemies;
     static std::list<std::shared_ptr<Turret>> turrets;
 
@@ -25,10 +27,10 @@ public:
     static void init(unsigned width, unsigned height);
 
     static std::list<std::pair<int, int>> neighbours(
-          const std::pair<int, int>& pos);
+        const std::pair<int, int>& pos);
 
     static int cost(const std::pair<int, int>& start,
-                    const std::pair<int, int>& end);
+        const std::pair<int, int>& end);
 
     static bool is_visitable(const std::pair<int, int>& node);
 
@@ -37,7 +39,10 @@ public:
     static std::pair<int, int> start_mobs;
     static std::pair<int, int> finish_mobs;
 
-private:
+    static unsigned width;
+    static unsigned height;
+
+  private:
     static std::string cell_to_str(CellType type);
 };
 
