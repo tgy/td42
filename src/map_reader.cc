@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <cassert>
 
 #include "map_reader.hh"
 #include "map.hh"
@@ -11,6 +12,26 @@
 #define FINNISH 'F'
 #define OBSTACLE 'O'
 #define B_OBSTACLE 'B'
+
+bool MapReader::set_size(std::string file)
+{
+    std::string line;
+    std::ifstream mapfile(file);
+    if (!mapfile.is_open())
+    {
+        std::cerr << "Error: Could not open file '" << file << "'." << std::endl;
+        return false;
+    }
+    unsigned y = 0;
+    getline(mapfile, line);
+    Map::width = line.length();
+    while (getline(mapfile, line))
+        y++;
+    Map::height = y + 1;
+    //std::cout << "w:" << Map::width << ", h:" << Map::height << std::endl;
+    mapfile.close();
+    return true;
+}
 
 bool MapReader::read_map(std::string file)
 {

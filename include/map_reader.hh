@@ -6,6 +6,7 @@
 class MapReader
 {
     public:
+        static bool set_size(std::string file);
         static bool read_map(std::string file);
 };
 

@@ -28,7 +28,7 @@ float Map::tile_w_;
 float Map::tile_h_;
 
 
-void Map::init(unsigned width, unsigned height)
+void Map::init()
 {
     cells = std::vector<std::vector<Cell>>(width);
 
@@ -38,8 +38,6 @@ void Map::init(unsigned width, unsigned height)
         for (unsigned j = 0; j < height; ++j)
             cells[i][j].type = CellType::Empty;
     }
-    Map::width = width;
-    Map::height = height;
 }
 
 int Map::cost(const std::pair<int, int>& start, const std::pair<int, int>& end)

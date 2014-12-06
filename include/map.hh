@@ -31,7 +31,7 @@ class Map
 
         static std::vector<std::vector<Cell>> cells;
 
-        static void init(unsigned width, unsigned height);
+        static void init();
 
         static std::list<std::pair<int, int>> neighbours(
                 const std::pair<int, int>& pos);

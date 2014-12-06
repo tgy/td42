@@ -5,7 +5,7 @@
 class PlayState : public GameState
 {
     public:
-        PlayState();
+        PlayState(std::string map);
         virtual ~PlayState() = default;
         void draw(sf::RenderWindow& w);
         void update(unsigned elapsed_ms);
