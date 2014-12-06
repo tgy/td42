@@ -17,8 +17,8 @@ enum CellType
 class Map
 {
   public:
-    std::list<std::shared_ptr<Mob>> ennemies;
-    std::list<std::shared_ptr<Turret>> turrets;
+    static std::list<std::shared_ptr<Mob>> ennemies;
+    static std::list<std::shared_ptr<Turret>> turrets;
     std::vector<std::vector<CellType>> cells;
 
     std::list<std::pair<int, int>> neighbours(

@@ -1,3 +1,5 @@
+#include <memory>
+#include "map.hh"
 #include "mob.hh"
 
 Mob::Mob(unsigned life, float x, float y, float direction, float speed,
@@ -6,6 +8,9 @@ Mob::Mob(unsigned life, float x, float y, float direction, float speed,
    : Entity(life, x, y, direction, fixed_res, power, range),
      speed_{speed}, can_fly_{can_fly}, reward_{reward}
 {
+  ennemies_ = &Map::turrets;
+  std::list<int> *l = &std::list<double>();
+  std::shared_ptr<Entity> t = std::make_shared<Turret>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
 float Mob::get_speed()

@@ -5,7 +5,7 @@
 Entity::Entity(unsigned life, float x, float y, float direction,
                unsigned power, float range, unsigned fixed_res)
       : life_{life}, life_max_{life}, fixed_res_{fixed_res}, power_{power},
-        x_{x}, y_{y}, direction_{direction}, range_(range), spy_(nullptr)
+        x_{x}, y_{y}, direction_{direction}, range_{range}
 {
 }
 
@@ -40,44 +40,38 @@ float Entity::get_range()
 
 void Entity::take_attack(unsigned power)
 {
+  if (power <= this->fixed_res_)
+    return;
   power -= this->fixed_res_;
   if (power >= this->life_)
     this->life_ = 0;
   else
     this->life_ -= power;
+  if (this->life_ == 0)
+    this->harakiri();
 }
+
+float Entity::dist_from(Entity &a)
+{
+  auto pos = a.get_pos();
+  float dx = pos.first - x_;
+  float dy = pos.second - y_;
+  return sqrt(dx * dx + dy * dy);
+}
+
 bool Entity::dead()
 {
   return this->life_ == 0;
 }
 
-void Entity::attack()
+
+void Entity::harakiri()
 {
-  if (spy_ != nullptr)
-  {
-    if (spy_->dead())
-      spy_ = nullptr;
-    else
-    {
-      auto pos = spy_->get_pos();
-      float dx = pos.first - x_;
-      float dy = pos.second - y_;
-      if (range_ < sqrt(dx * dx + dy * dy))
-        spy_ = NULL; // If Ennemy is too far... let's forget it.
-    }
-  }
-  if (spy_ == nullptr)
-  {
-    //FIXME: find a new unit to spy.
-  }
-  if (spy_ != nullptr)
-  {
-    //FIXME: attack this unit.
-  }
+  this->life_ = 0;
 }
 
 bool Entity::can_view(Entity& ennemy)
 {
   ennemy = ennemy;
-  return false;
+  return true;
 }
