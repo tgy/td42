@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
+#set(PROJECT_NAME td42)
 project(td42)
 
 set(TD42_VERSION_MAJOR 0)
@@ -29,10 +30,14 @@ file(GLOB_RECURSE SOURCES ${SOURCE_DIR}/*.cc)
 #set(CHECK_UNIT_SOURCES ${TMP_TEST_SOURCES} ${CHECK_UNIT_SOURCES})
 
 # The main non-debug target
-add_executable(td42 ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 set_target_properties(td42 PROPERTIES COMPILE_FLAGS "${CXX_FLAGS} -O3")
 #target_link_libraries(42sh ${CMAKE_THREAD_LIBS_INIT})
 #target_link_libraries(42sh ${CURSES_LIBRARIES})
+
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+find_package(SFML 2 REQUIRED system window graphics)
+target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES})
 
 # The debug target
 add_executable(debug EXCLUDE_FROM_ALL ${SOURCES})
