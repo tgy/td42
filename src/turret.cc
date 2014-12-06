@@ -1,4 +1,5 @@
 #include <cfloat>
+#include <cmath>
 #include "map.hh"
 #include "turret.hh"
 
@@ -17,7 +18,7 @@ unsigned Turret::get_recharge_time()
 
 void Turret::attack()
 {
-  if (spy_ != nullptr)
+  if (spy_ != nullptr) // Check if we have to forget the current one
   {
     if (spy_->dead())
       spy_ = nullptr;
@@ -39,5 +40,12 @@ void Turret::attack()
     }
   }
   if (spy_ != nullptr)
+  {
+    auto pos = spy_->get_pos();
+    float r = sqrt(pos.first * pos.first + pos.second * pos.second);
+    float normalized = pos.first / r;
+    float angle = acos(normalized);
+    this->direction_ = angle;
     spy_->take_attack(this->get_power());
+  }
 }

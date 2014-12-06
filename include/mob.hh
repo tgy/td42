@@ -1,5 +1,7 @@
 #ifndef MOB_HH
 # define MOB_HH
+# include <list>
+#include <utility>
 # include "entity.hh"
 
 class Mob : public Entity
@@ -21,6 +23,7 @@ class Mob : public Entity
     float speed_;
     bool can_fly_;
     unsigned reward_;
+    std::list<std::pair<int, int>> path_;
 };
 
 #endif /* !MOB_HH */

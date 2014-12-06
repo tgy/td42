@@ -21,7 +21,7 @@ class Entity
     void take_attack(unsigned power);
     bool dead();
     virtual void attack();
-    void harakiri();
+    virtual void harakiri();
 
   protected:
     unsigned life_;
