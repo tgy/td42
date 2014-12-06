@@ -2,20 +2,27 @@
 # define PATHFINDING_HH
 
 #include <list>
+#include <utility>
 
-template <typename TMap, typename TNode>
-std::list<TNode> pathfind(const TNode& start, const TNode& end);
+class Map;
 
-struct Node
+std::list<std::pair<int, int>> pathfind(const std::pair<int, int>& start,
+                                        const std::pair<int, int>& end,
+                                        const Map& map);
+
+struct PathNode
 {
-    Node(int x, int y, int cost = 0) : x(x), y(y), cost(cost)
+    PathNode(const std::pair<int, int>& cell, int cost = 0)
+        : cell(cell), cost(cost)
     {}
 
-    int x;
-    int y;
+    std::pair<int, int> cell;
     int cost;
 };
 
-#include "pathfinding.hxx"
+bool operator<(const PathNode& a, const PathNode& b)
+{
+    return a.cost > b.cost;
+}
 
 #endif /* !PATHFINDING_HH */

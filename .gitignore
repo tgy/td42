@@ -29,3 +29,7 @@
 
 *.ycm*
 build
+
+.ycm_extra_conf.py
+*.pyc
+tags
