@@ -137,4 +137,29 @@ void Map::draw(sf::RenderWindow& w)
     for (unsigned x = 0; x < width; ++x)
         for (unsigned y = 0; y < height; ++y)
             w.draw(cells[x][y].sprite);
+    Map::ennemies.sort();
+    Map::turrets.sort();
+    auto ei = Map::ennemies.begin();
+    auto ti = Map::turrets.begin();
+    auto ee = Map::ennemies.end();
+    auto te = Map::turrets.end();
+    while (ei != ee || ti != te)
+    {
+        if (ti == te)
+            for (; ei != ee; ++ei)
+                (*ei)->draw(w);
+        else if (ei == ee)
+            for (; ti != te; ++ti)
+                (*ti)->draw(w);
+        else if (**ei < **ti)
+        {
+            (*ei)->draw(w);
+            ++ei;
+        }
+        else
+        {
+            (*ti)->draw(w);
+            ++ti;
+        }
+    }
 }

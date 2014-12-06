@@ -1,4 +1,5 @@
 #include <cmath>
+#include <SFML/Graphics.hpp>
 #include <utility>
 #include "entity.hh"
 
@@ -67,7 +68,6 @@ bool Entity::dead()
   return this->life_ == 0;
 }
 
-
 void Entity::harakiri()
 {
   this->life_ = 0;
@@ -75,6 +75,18 @@ void Entity::harakiri()
 
 bool Entity::can_view(Entity& ennemy)
 {
-  ennemy = ennemy;
-  return true;
+    ennemy = ennemy;
+    return true;
+}
+
+bool Entity::operator<(const Entity& e)
+{
+    if (e.y_ != y_)
+        return y_ < e.y_;
+    return x_ < e.x_;
+}
+
+void Entity::draw(sf::RenderWindow& w)
+{
+    w.clear();
 }

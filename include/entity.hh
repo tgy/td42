@@ -1,6 +1,7 @@
 #ifndef ENTITY_HH
 # define ENTITY_HH
 # include <utility>
+# include <SFML/Graphics.hpp>
 
 class Entity
 {
@@ -9,6 +10,7 @@ class Entity
         float range, unsigned fixed_res = 0);
     virtual ~Entity() = default;
 
+    bool operator<(const Entity& e);
     std::pair<float, float> get_pos();
     float get_direction();
     float get_range();
@@ -22,6 +24,8 @@ class Entity
     bool dead();
     virtual void attack() = 0;
     virtual void harakiri();
+
+    void draw(sf::RenderWindow& w);
 
   protected:
     unsigned life_;
