@@ -1,7 +1,9 @@
 #include "entity.hh"
 
-Entity::Entity(unsigned life, float x, float y, float direction)
-      : life_{life}, life_max_{life}, x_{x}, y_{y}, direction_{direction}
+Entity::Entity(unsigned life, float x, float y, float direction,
+               unsigned fixed_res)
+      : life_{life}, life_max_{life},fixed_res_{fixed_res}, x_{x}, y_{y},
+        direction_{direction}
 {
 }
 
