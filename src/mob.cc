@@ -1,4 +1,5 @@
 #include <memory>
+#include <cmath>
 #include <cfloat>
 
 #include "map.hh"
@@ -43,6 +44,10 @@ void Mob::move()
       if (path_.empty())
         return;
       next = *path_.begin();
+      float dx = next.first - x_;
+      float dy = next.second - y_;
+      float r = sqrt(dx * dx + dy * dy);
+      direction_ = acos(dx / r);
     }
     float dx = (next.first - old_x_) * speed_;
     float dy = (next.second - old_y_) * speed_;
