@@ -42,8 +42,10 @@ void Turret::attack()
   if (spy_ != nullptr)
   {
     auto pos = spy_->get_pos();
-    float r = sqrt(pos.first * pos.first + pos.second * pos.second);
-    float normalized = pos.first / r;
+    float dx = pos.first - this->x_;
+    float dy = pos.second - this->y_;
+    float r = sqrt(dx * dx + dy * dy);
+    float normalized = dx / r;
     float angle = acos(normalized);
     this->direction_ = angle;
     spy_->take_attack(this->get_power());

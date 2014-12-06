@@ -27,6 +27,9 @@ class Map
     int cost(const std::pair<int, int>& start,
              const std::pair<int, int>& end) const;
 
+    static std::pair<int, int> start_mobs;
+    static std::pair<int, int> finish_mobs;
+
     bool is_visitable(const std::pair<int, int>& node) const;
 };
 
