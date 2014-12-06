@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include "gamestates/startstate.hh"
+#include "gamestates/playstate.hh"
 
 StartState::StartState()
           : logo_step_{0.02f}, logo_size_{0}, logo_final_size_{0.8}, logo_x_{0},
@@ -36,5 +37,8 @@ void StartState::update(unsigned elapsed_ms)
   logo_sprite_.setPosition(x, y);
   logo_sprite_.setScale(logo_size_, logo_size_);
   if (wait_time_ <= 0)
+  {
     GameState::stack.pop_back();
+    GameState::stack.push_back(std::make_shared<PlayState>());
+  }
 }

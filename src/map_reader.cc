@@ -27,26 +27,26 @@ bool MapReader::read_map(std::string file)
         switch (c)
         {
           case START:
-            Map::cells[x][y] = Empty;
+            Map::cells[x][y].type = Empty;
             Map::start_mobs.first = x;
             Map::start_mobs.second = y;
             break;
           case TOWER:
-            Map::cells[x][y] = Tower;
+            Map::cells[x][y].type = Tower;
             break;
           case EMPTY:
-            Map::cells[x][y] = Empty;
+            Map::cells[x][y].type = Empty;
             break;
           case FINNISH:
-            Map::cells[x][y] = Empty;
+            Map::cells[x][y].type = Empty;
             Map::finish_mobs.first = x;
             Map::finish_mobs.second = y;
             break;
           case OBSTACLE:
-            Map::cells[x][y] = Obstacle;
+            Map::cells[x][y].type = Obstacle;
             break;
           case B_OBSTACLE:
-            Map::cells[x][y] = Blocking_obstacle;
+            Map::cells[x][y].type = Blocking_obstacle;
             break;
         }
         x++;

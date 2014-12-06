@@ -3,6 +3,7 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "settings.hh"
 #include "gamestate.hh"
 #include "gamestates/startstate.hh"
 
@@ -10,15 +11,18 @@ std::list<std::shared_ptr<GameState>> GameState::stack;
 
 void init()
 {
-  std::shared_ptr<StartState> ptr = std::make_shared<StartState>();
-  //std::shared_ptr<PlayState> ptr = std::make_shared<PlayState>();
-  GameState::stack.push_back(ptr);
+    std::shared_ptr<StartState> ptr = std::make_shared<StartState>();
+    //std::shared_ptr<PlayState> ptr = std::make_shared<PlayState>();
+    GameState::stack.push_back(ptr);
 }
 
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "TD42");
+    Settings::screen_width = 800;
+    Settings::screen_height = 600;
+    sf::RenderWindow window(sf::VideoMode(Settings::screen_width,
+                                          Settings::screen_height), "TD42");
     // Init
     init();
     // Start the game loop
