@@ -4,6 +4,8 @@
 class Entity
 {
   public:
+    Entity(float x, float y, float direction);
+    virtual ~Entity() = default;
     float get_x();
     float get_y();
     float get_direction();

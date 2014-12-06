@@ -1,5 +1,9 @@
 #include "entity.hh"
 
+Entity::Entity(float x, float y, float direction)
+      : x_{x}, y_{y}, direction_{direction}
+{
+}
 float Entity::get_x()
 {
   return this->x_;
