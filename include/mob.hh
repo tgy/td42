@@ -8,6 +8,8 @@ class Mob : public Entity
     Mob(unsigned life, float x, float y, float direction, float speed,
         bool can_fly);
     virtual ~Mob() = default;
+    float get_speed();
+    bool can_fly();
   protected:
     float speed_;
     bool can_fly_;
