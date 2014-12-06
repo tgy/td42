@@ -7,8 +7,7 @@
 class Map;
 
 std::list<std::pair<int, int>> pathfind(const std::pair<int, int>& start,
-                                        const std::pair<int, int>& end,
-                                        const Map& map);
+                                        const std::pair<int, int>& end);
 
 struct PathNode
 {
@@ -19,10 +18,5 @@ struct PathNode
     std::pair<int, int> cell;
     int cost;
 };
-
-bool operator<(const PathNode& a, const PathNode& b)
-{
-    return a.cost > b.cost;
-}
 
 #endif /* !PATHFINDING_HH */

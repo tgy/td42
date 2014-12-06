@@ -16,21 +16,29 @@ enum CellType
 
 class Map
 {
-  public:
+public:
     static std::list<std::shared_ptr<Mob>> ennemies;
     static std::list<std::shared_ptr<Turret>> turrets;
-    std::vector<std::vector<CellType>> cells;
 
-    std::list<std::pair<int, int>> neighbours(
-            const std::pair<int, int>& pos) const;
+    static std::vector<std::vector<CellType>> cells;
 
-    int cost(const std::pair<int, int>& start,
-             const std::pair<int, int>& end) const;
+    static void init(unsigned width, unsigned height);
+
+    static std::list<std::pair<int, int>> neighbours(
+          const std::pair<int, int>& pos);
+
+    static int cost(const std::pair<int, int>& start,
+                    const std::pair<int, int>& end);
+
+    static bool is_visitable(const std::pair<int, int>& node);
+
+    static void print(std::ostream& out);
 
     static std::pair<int, int> start_mobs;
     static std::pair<int, int> finish_mobs;
 
-    bool is_visitable(const std::pair<int, int>& node) const;
+private:
+    static std::string cell_to_str(CellType type);
 };
 
 #endif /* !MAP_HH */

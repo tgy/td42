@@ -1,5 +1,6 @@
 #include <memory>
 #include <cfloat>
+
 #include "map.hh"
 #include "mob.hh"
 #include "pathfinding.hh"

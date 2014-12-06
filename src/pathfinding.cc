@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include <queue>
 #include <memory>
 #include <map>
@@ -12,15 +13,19 @@ using std::pair;
 using std::list;
 using std::priority_queue;
 
+bool operator<(const PathNode& a, const PathNode& b)
+{
+    return a.cost > b.cost;
+}
+
 list<pair<int, int>> pathfind(const pair<int, int>& start,
-                              const pair<int, int>& end,
-                              const Map& map)
+                              const pair<int, int>& end)
 {
     priority_queue<PathNode> frontier;
     frontier.push(PathNode(start, 0));
-    std::map<pair<int, int>, std::shared_ptr<pair<int, int>>> came_from;
+    std::map<pair<int, int>, pair<int, int>> came_from;
     std::map<pair<int, int>, int> costs;
-    came_from[start] = nullptr;
+    came_from[start] = start;
     costs[start] = 0;
 
     while (not frontier.empty())
@@ -29,24 +34,24 @@ list<pair<int, int>> pathfind(const pair<int, int>& start,
         frontier.pop();
         if (current.cell == end)
             break;
-        for (const auto& next : map.neighbours(current.cell))
+        for (const auto& next : Map::neighbours(current.cell))
         {
-            int new_cost = costs[current.cell] + map.cost(current.cell, next);
+            int new_cost = costs[current.cell] + Map::cost(current.cell, next);
             if (costs.count(next) == 0 || new_cost < costs[next])
             {
                 costs[next] = new_cost;
                 frontier.push(PathNode(next, new_cost));
-                came_from[next] = std::make_shared<PathNode>(current);
+                came_from[next] = current.cell;
             }
         }
     }
 
-    pair<int, int> current = start;
+    pair<int, int> current = end;
     list<pair<int, int>> path = { current };
 
     while (current != start)
     {
-        current = *came_from[current];
+        current = came_from[current];
         path.push_front(current);
     }
 

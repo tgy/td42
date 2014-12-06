@@ -2,8 +2,22 @@
 
 #include "map.hh"
 
+std::vector<std::vector<CellType>> Map::cells;
+std::list<std::shared_ptr<Turret>> Map::turrets;
+std::list<std::shared_ptr<Mob>> Map::ennemies;
+std::pair<int, int> Map::start_mobs;
+std::pair<int, int> Map::finish_mobs;
+
+void Map::init(unsigned width, unsigned height)
+{
+    cells = std::vector<std::vector<CellType>>(width);
+
+    for (unsigned i = 0; i < height; ++i)
+        cells[i] = std::vector<CellType>(height);
+}
+
 int Map::cost(const std::pair<int, int>& start,
-              const std::pair<int, int>& end) const
+              const std::pair<int, int>& end)
 {
     int cost = 0;
     if (cells[end.first][end.second] == CellType::Empty)
@@ -14,7 +28,7 @@ int Map::cost(const std::pair<int, int>& start,
 }
 
 std::list<std::pair<int, int>> Map::neighbours(
-                      const std::pair<int, int>& pos) const
+                      const std::pair<int, int>& pos)
 {
     std::list<std::pair<int, int>> neighbours = {
         std::make_pair(pos.first + 1, pos.second),
@@ -33,7 +47,7 @@ std::list<std::pair<int, int>> Map::neighbours(
     return neighbours;
 }
 
-bool Map::is_visitable(const std::pair<int, int>& node) const
+bool Map::is_visitable(const std::pair<int, int>& node)
 {
     return node.first >= 0
         && static_cast<unsigned long>(node.first) < cells.size()
@@ -42,3 +56,26 @@ bool Map::is_visitable(const std::pair<int, int>& node) const
         && cells[node.first][node.second] == CellType::Empty;
 }
 
+void Map::print(std::ostream& out)
+{
+    for (const auto& line : cells)
+    {
+        for (const auto& cell : line)
+            out << cell_to_str(cell) + " ";
+
+        out << std::string("\n");
+    }
+}
+
+std::string Map::cell_to_str(CellType type)
+{
+    switch (type)
+    {
+        case CellType::Tower:
+            return "T";
+        case CellType::Empty:
+            return " ";
+        default:
+            return "U";
+    }
+}

@@ -20,7 +20,7 @@ class Entity
     bool can_view(Entity& ennemy);
     void take_attack(unsigned power);
     bool dead();
-    virtual void attack();
+    virtual void attack() = 0;
     virtual void harakiri();
 
   protected:

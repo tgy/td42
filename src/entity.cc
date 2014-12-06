@@ -42,11 +42,14 @@ void Entity::take_attack(unsigned power)
 {
   if (power <= this->fixed_res_)
     return;
+
   power -= this->fixed_res_;
+
   if (power >= this->life_)
     this->life_ = 0;
   else
     this->life_ -= power;
+
   if (this->life_ == 0)
     this->harakiri();
 }

@@ -5,6 +5,7 @@ project(td42)
 #set(TD42_VERSION_MAJOR 0)
 #set(TD42_VERSION_MINOR 9)
 
+set(CXX "clang++")
 set(CXX_FLAGS "-Wall -Wextra -Werror -pedantic -std=c++1y")
 #find_package(Threads)
 #find_package(Curses REQUIRED)
