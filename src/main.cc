@@ -9,13 +9,7 @@
 int main()
 {
     Map::init(10, 10);
-    Map::print(std::cout);
 
-    auto path = pathfind(std::make_pair(0, 0), std::make_pair(7, 9));
-    for (const auto& node : path)
-        Map::cells[node.first][node.second] = CellType::Tower;
-    Map::print(std::cout);
-    return 0;
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "TD42");
     // Load a sprite to display
@@ -41,5 +35,6 @@ int main()
         // Update the window
         window.display();
     }
+
     return EXIT_SUCCESS;
 }
