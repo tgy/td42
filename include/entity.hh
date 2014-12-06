@@ -16,6 +16,9 @@ class Entity
     unsigned get_life_max();
     unsigned get_power();
 
+    void take_attack(unsigned power);
+    bool dead();
+
   protected:
     unsigned life_;
     unsigned life_max_;

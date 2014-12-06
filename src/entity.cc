@@ -41,3 +41,16 @@ float Entity::get_range()
 {
   return this->range_;
 }
+
+void Entity::take_attack(unsigned power)
+{
+  power -= this->fixed_res_;
+  if (power >= this->life_)
+    this->life_ = 0;
+  else
+    this->life_ -= power;
+}
+bool Entity::dead()
+{
+  return this->life_ == 0;
+}
