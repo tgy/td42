@@ -24,7 +24,8 @@ class Mob : public Entity
     bool can_fly_;
     unsigned reward_;
     std::list<std::pair<int, int>> path_;
-    std::pair<int, int> old_pos;
+    float old_x_;
+    float old_y_;
 };
 
 #endif /* !MOB_HH */

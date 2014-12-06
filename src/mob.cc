@@ -9,7 +9,7 @@ Mob::Mob(unsigned life, float x, float y, float direction, float speed,
          bool can_fly, unsigned fixed_res, unsigned reward, unsigned power,
          float range)
    : Entity(life, x, y, direction, fixed_res, power, range),
-           can_fly_{can_fly}, reward_{reward}
+           can_fly_{can_fly}, reward_{reward}, old_x_{-1}, old_y_{-1}
 {
   if (speed <= 0 || speed >= 1)
     speed_ = 0.1f;
@@ -37,11 +37,17 @@ void Mob::move()
     int py = y_;
     if (x_ == px && y_ == py)
     {
+      old_x_ = x_;
+      old_y_ = y_;
       path_.pop_front();
       if (path_.empty())
         return;
       next = *path_.begin();
     }
+    float dx = (next.first - old_x_) * speed_;
+    float dy = (next.second - old_y_) * speed_;
+    x_ += dx;
+    y_ += dy;
   }
 }
 
