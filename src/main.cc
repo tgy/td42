@@ -1,24 +1,27 @@
 #include <iostream>
+#include <memory>
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "gamestate.hh"
+#include "gamestates/menustate.hh"
 
-#include "map.hh"
-#include "pathfinding.hh"
+std::list<std::shared_ptr<GameState>> GameState::stack;
+
+void init()
+{
+  std::shared_ptr<GameState> ptr(new MenuState());
+  GameState::stack.push_back(ptr);
+}
 
 int main()
 {
-    Map::init(10, 10);
-
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "TD42");
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile("resources/logo.png"))
-        return EXIT_FAILURE;
-    sf::Sprite sprite(texture);
+    // Init
+    init();
     // Start the game loop
-    while (window.isOpen())
+    while (window.isOpen() && !GameState::stack.empty())
     {
         // Process events
         sf::Event event;
@@ -30,8 +33,8 @@ int main()
         }
         // Clear screen
         window.clear();
-        // Draw the sprite
-        window.draw(sprite);
+        GameState::stack.back()->update(42);;
+        GameState::stack.back()->draw(window);
         // Update the window
         window.display();
     }
