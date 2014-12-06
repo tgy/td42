@@ -4,7 +4,7 @@ project(td42)
 set(TD42_VERSION_MAJOR 0)
 set(TD42_VERSION_MINOR 9)
 
-set(CPP_FLAGS "-Wall -Wextra -Werror -pedantic -std=c++1y")
+set(CXX_FLAGS "-Wall -Wextra -Werror -pedantic -std=c++1y")
 #find_package(Threads)
 #find_package(Curses REQUIRED)
 set(TD42_VERSION ${42SH_VERSION_MAJOR}.${42SH_VERSION_MINOR})
@@ -29,14 +29,14 @@ file(GLOB_RECURSE SOURCES ${SOURCE_DIR}/*.cc)
 #set(CHECK_UNIT_SOURCES ${TMP_TEST_SOURCES} ${CHECK_UNIT_SOURCES})
 
 # The main non-debug target
-add_executable(42sh ${SOURCES})
-set_target_properties(42sh PROPERTIES COMPILE_FLAGS "${CPP_FLAGS} -O3")
+add_executable(td42 ${SOURCES})
+set_target_properties(td42 PROPERTIES COMPILE_FLAGS "${CXX_FLAGS} -O3")
 #target_link_libraries(42sh ${CMAKE_THREAD_LIBS_INIT})
 #target_link_libraries(42sh ${CURSES_LIBRARIES})
 
 # The debug target
 add_executable(debug EXCLUDE_FROM_ALL ${SOURCES})
-set_target_properties(debug PROPERTIES COMPILE_FLAGS "${CPP_FLAGS} -ggdb3")
+set_target_properties(debug PROPERTIES COMPILE_FLAGS "${CXX_FLAGS} -ggdb3")
 #target_link_libraries(debug ${CMAKE_THREAD_LIBS_INIT})
 #target_link_libraries(debug ${CURSES_LIBRARIES})
 
