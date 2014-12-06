@@ -6,6 +6,9 @@
 #include "settings.hh"
 #include "gamestate.hh"
 #include "gamestates/startstate.hh"
+#include "map.hh"
+#include "pathfinding.hh"
+#include "map_reader.hh"
 
 std::list<std::shared_ptr<GameState>> GameState::stack;
 
@@ -22,7 +25,7 @@ int main()
     Settings::screen_width = 1000;
     Settings::screen_height = 600;
     sf::RenderWindow window(sf::VideoMode(Settings::screen_width,
-                                          Settings::screen_height), "TD42");
+                Settings::screen_height), "TD42");
     // Init
     init();
     // Start the game loop
@@ -47,6 +50,5 @@ int main()
         // Update the window
         window.display();
     }
-
     return EXIT_SUCCESS;
 }

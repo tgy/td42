@@ -55,21 +55,21 @@ int Map::cost(const std::pair<int, int>& start, const std::pair<int, int>& end)
 std::list<std::pair<int, int>> Map::neighbours(
         const std::pair<int, int>& pos)
 {
-    std::list<std::pair<int, int>> neighbours = {
-        std::make_pair(pos.first + 1, pos.second),
-        std::make_pair(pos.first + 1, pos.second + 1),
-        std::make_pair(pos.first, pos.second + 1),
-        std::make_pair(pos.first, pos.second + 1)
-    };
+  std::list<std::pair<int, int>> neighbours = {
+    std::make_pair(pos.first + 1, pos.second),
+    std::make_pair(pos.first + 1, pos.second + 1),
+    std::make_pair(pos.first, pos.second + 1),
+    std::make_pair(pos.first, pos.second + 1)
+  };
 
-    for (auto it = neighbours.begin(); it != neighbours.end(); ++it)
-        if (!is_visitable(*it))
-        {
-            it = neighbours.erase(it);
-            --it;
-        }
+  for (auto it = neighbours.begin(); it != neighbours.end(); ++it)
+    if (!is_visitable(*it))
+    {
+      it = neighbours.erase(it);
+      --it;
+    }
 
-    return neighbours;
+  return neighbours;
 }
 
 bool Map::is_visitable(const std::pair<int, int>& node)
