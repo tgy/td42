@@ -36,7 +36,7 @@ void Mob::move()
     std::pair<int, int> next = *path_.begin();
     int px = x_;
     int py = y_;
-    if (x_ == px && y_ == py)
+    if ((x_ == px && y_ == py) || old_x_ == -1 || old_y_ == -1)
     {
       old_x_ = x_;
       old_y_ = y_;
@@ -60,4 +60,6 @@ void Mob::update_pathfinding()
 {
   std::pair<int, int> t(this->x_, this->y_);
   this->path_ = pathfind(t, Map::finish_mobs);
+  old_x_ = -1;
+  old_y_ = -1;
 }
