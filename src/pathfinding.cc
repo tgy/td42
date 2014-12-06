@@ -41,5 +41,14 @@ list<pair<int, int>> pathfind(const pair<int, int>& start,
         }
     }
 
-    //return path;
+    pair<int, int> current = start;
+    list<pair<int, int>> path = { current };
+
+    while (current != start)
+    {
+        current = *came_from[current];
+        path.push_front(current);
+    }
+
+    return path;
 }
