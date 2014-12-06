@@ -92,3 +92,8 @@ std::string Map::cell_to_str(CellType type)
             return "U";
     }
 }
+
+void Map::draw(sf::RenderWindow& w)
+{
+  w.clear();
+}

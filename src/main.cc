@@ -4,13 +4,14 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "gamestate.hh"
-#include "gamestates/menustate.hh"
+#include "gamestates/startstate.hh"
 
 std::list<std::shared_ptr<GameState>> GameState::stack;
 
 void init()
 {
-  std::shared_ptr<GameState> ptr(new MenuState());
+  std::shared_ptr<StartState> ptr = std::make_shared<StartState>();
+  //std::shared_ptr<PlayState> ptr = std::make_shared<PlayState>();
   GameState::stack.push_back(ptr);
 }
 
@@ -29,12 +30,16 @@ int main()
         {
             // Close window : exit
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+                break;
+            }
         }
         // Clear screen
         window.clear();
-        GameState::stack.back()->update(42);;
-        GameState::stack.back()->draw(window);
+        auto state = GameState::stack.back();
+        state->update(42);;
+        state->draw(window);
         // Update the window
         window.display();
     }

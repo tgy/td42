@@ -8,7 +8,7 @@ PlayState::PlayState()
 
 void PlayState::draw(sf::RenderWindow& w)
 {
-  w.clear();
+  Map::draw(w);
 }
 
 

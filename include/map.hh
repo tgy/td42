@@ -4,6 +4,7 @@
 # include <list>
 # include <vector>
 # include <memory>
+# include <SFML/Graphics.hpp>
 
 # include "mob.hh"
 # include "turret.hh"
@@ -41,6 +42,7 @@ class Map
 
     static unsigned width;
     static unsigned height;
+    static void draw(sf::RenderWindow& w);
 
   private:
     static std::string cell_to_str(CellType type);
