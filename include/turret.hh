@@ -2,8 +2,14 @@
 # define TURRET_HH
 # include "entity.hh"
 
-public Turret : Entity
+class Turret : Entity
 {
+  public:
+    Turret(unsigned life, float x, float y, float direction,
+        unsigned recharge_time, unsigned fixed_res = 0, unsigned power = 0,
+        float range = 0);
+    virtual ~Turret() = default;
+    unsigned get_recharge_time();
   protected:
     unsigned recharge_time_;
 };
