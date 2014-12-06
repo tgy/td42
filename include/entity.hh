@@ -1,5 +1,7 @@
 #ifndef ENTITY_HH
 # define ENTITY_HH
+# include <list>
+# include <memory>
 # include <utility>
 
 class Entity
@@ -16,6 +18,7 @@ class Entity
     unsigned get_life_max();
     unsigned get_power();
 
+    bool can_view(Entity& ennemy);
     void take_attack(unsigned power);
     bool dead();
     void attack();
@@ -29,6 +32,7 @@ class Entity
     float y_;
     float direction_;
     float range_;
+    std::shared_ptr<Entity> spy_;
 };
 
 #endif /* !ENTITY_HH */
