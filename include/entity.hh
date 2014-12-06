@@ -18,6 +18,7 @@ class Entity
 
     void take_attack(unsigned power);
     bool dead();
+    void attack();
 
   protected:
     unsigned life_;

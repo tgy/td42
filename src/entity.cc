@@ -54,3 +54,7 @@ bool Entity::dead()
 {
   return this->life_ == 0;
 }
+
+void Entity::attack()
+{
+}
