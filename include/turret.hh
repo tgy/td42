@@ -4,6 +4,8 @@
 
 public Turret : Entity
 {
+  protected:
+    unsigned recharge_time_;
 };
 
 

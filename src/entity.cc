@@ -1,9 +1,9 @@
 #include "entity.hh"
 
 Entity::Entity(unsigned life, float x, float y, float direction,
-               unsigned fixed_res)
-      : life_{life}, life_max_{life},fixed_res_{fixed_res}, x_{x}, y_{y},
-        direction_{direction}
+               unsigned power, float range, unsigned fixed_res)
+      : life_{life}, life_max_{life}, fixed_res_{fixed_res}, power_{power},
+        x_{x}, y_{y}, direction_{direction}, range_(range)
 {
 }
 
@@ -30,4 +30,14 @@ unsigned Entity::get_life()
 unsigned Entity::get_life_max()
 {
   return this->life_max_;
+}
+
+unsigned Entity::get_power()
+{
+  return this->power_;
+}
+
+float Entity::get_range()
+{
+  return this->range_;
 }
