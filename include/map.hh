@@ -56,6 +56,16 @@ class Map
                                   unsigned& rx, unsigned& ry);
         static float tile_w_;
         static float tile_h_;
+
+        static Cell& at(std::pair<int, int> cell)
+        {
+            return cells[cell.first][cell.second];
+        }
+
+        static Cell& at(int x, int y)
+        {
+            return cells[x][y];
+        }
     private:
         static float off_x_;
         static float off_y_;
