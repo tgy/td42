@@ -72,11 +72,16 @@ std::list<std::pair<int, int>> Map::neighbours(
 
 bool Map::is_visitable(const std::pair<int, int>& node)
 {
+    return Map::is_in_bounds(node)
+        && cells[node.first][node.second].type == CellType::Empty;
+}
+
+bool Map::is_in_bounds(const std::pair<int, int>& node)
+{
     return node.first >= 0
         && static_cast<unsigned long>(node.first) < cells.size()
         && node.second >= 0
-        && static_cast<unsigned long>(node.second) < cells[0].size()
-        && cells[node.first][node.second].type == CellType::Empty;
+        && static_cast<unsigned long>(node.second) < cells[0].size();
 }
 
 void Map::print(std::ostream& out)

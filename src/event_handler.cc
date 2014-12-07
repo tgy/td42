@@ -72,7 +72,9 @@ void EventHandler::handle_playstate(sf::RenderWindow& w,
                 break;
             case sf::Event::MouseButtonPressed:
                 if (event.mouseButton.button == sf::Mouse::Left)
+                {
                     s->exit_insert_mode_and_create();
+                }
                 break;
             case sf::Event::Closed:
                 w.close();

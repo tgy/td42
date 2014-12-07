@@ -41,6 +41,7 @@ class Map
                 const std::pair<int, int>& end);
 
         static bool is_visitable(const std::pair<int, int>& node);
+        static bool is_in_bounds(const std::pair<int, int>& node);
 
         static void print(std::ostream& out);
 

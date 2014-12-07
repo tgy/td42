@@ -66,6 +66,8 @@ void PlayState::exit_insert_mode_and_create()
         turret_->set_opacity(255);
         Map::turrets.push_front(turret_);
         turret_ = nullptr;
+        for (auto& enemy : Map::ennemies)
+            enemy->update_pathfinding();
     }
 }
 

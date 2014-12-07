@@ -21,6 +21,8 @@ bool operator<(const PathNode& a, const PathNode& b)
 list<pair<int, int>> pathfind(const pair<int, int>& start,
                               const pair<int, int>& end)
 {
+    if (!Map::is_in_bounds(start) || !Map::is_in_bounds(end))
+        return {};
     priority_queue<PathNode> frontier;
     frontier.push(PathNode(start, 0));
     std::map<pair<int, int>, pair<int, int>> came_from;
