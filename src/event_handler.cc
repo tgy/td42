@@ -10,21 +10,24 @@ void EventHandler::call_handler(sf::RenderWindow& w)
         switch (event.type)
         {
             case sf::Event::KeyPressed:
-                if (event.type == sf::Event::KeyPressed)
+                switch(event.key.code)
                 {
-                    switch(event.key.code)
-                    {
-                        case sf::Keyboard::Q:
-                            break;
-                        case sf::Keyboard::W:
-                            break;
-                        case sf::Keyboard::E:
-                            break;
-                        case sf::Keyboard::Space:
-                            break;
-                        default:
-                            break;
-                    }
+                    case sf::Keyboard::Q:
+                        break;
+                    case sf::Keyboard::W:
+                        break;
+                    case sf::Keyboard::E:
+                        break;
+                    case sf::Keyboard::Space:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case sf::Event::MouseButtonPressed:
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+
                 }
                 break;
             case sf::Event::Closed:
