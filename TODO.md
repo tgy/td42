@@ -1,11 +1,14 @@
 # TODO:
 
-
-
 # Done:
 
     - Spawn turrets
     - Kill units
+    - Add units
+    - Add towers
+
+    - Kill units
+    - Spawn turrets
     - Map reading
     - Key handling
     - Info displaying

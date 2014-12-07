@@ -17,6 +17,9 @@ Here is the complete list:
     - 'O': An obstacle (nothing else can go on this tile).
     - 'B': Like an obstacle.
 
+# Pathfinding
+
+
 
 # BuildSystem
 
