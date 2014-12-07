@@ -37,6 +37,12 @@ PlayState::PlayState(std::string map)
     this->levels.push_back(Level("resources/levels/5.td42"));
     ms_before_next_level = 100;
     ms_before_next_mob = TIME_BETWEEN_MOBS;
+    if (!toogy_content_.loadFromFile("resources/logo.png"))
+        throw std::logic_error("Could not load logo.");
+    sf::Sprite t(toogy_content_);
+    toogy_tres_content_ = t;
+    toogy_tres_content_.setPosition(0, Settings::screen_height
+                                       - toogy_content_.getSize().y);
 }
 
 void PlayState::insert_mode(std::shared_ptr<Turret> t)
@@ -102,6 +108,8 @@ void PlayState::draw(sf::RenderWindow& w)
     TextDrawer::display_money(w);
     TextDrawer::display_mouse_coords(w);
     TextDrawer::display_mouse_coords_on_map(w);
+    w.clear();
+    w.draw(toogy_tres_content_);
 }
 
 bool is_arrived(float x1, float x2, float y1, float y2)

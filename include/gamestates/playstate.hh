@@ -26,6 +26,8 @@ class PlayState : public GameState
         void exit_insert_mode_and_create();
     protected:
         std::shared_ptr<Turret> turret_;
+        sf::Texture toogy_content_;
+        sf::Sprite toogy_tres_content_;
 };
 
 #endif /* !PLAYSTATE_HH */
