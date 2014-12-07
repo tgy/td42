@@ -2,20 +2,23 @@
 #include <memory>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "settings.hh"
+#include <chrono>
+#include <unistd.h>
 
+#include "settings.hh"
 #include "gamestate.hh"
 #include "gamestates/startstate.hh"
 #include "map.hh"
 #include "pathfinding.hh"
 #include "map_reader.hh"
 
+#define FPS 60
+
 std::list<std::shared_ptr<GameState>> GameState::stack;
 
 void init()
 {
     std::shared_ptr<StartState> ptr = std::make_shared<StartState>();
-    //std::shared_ptr<PlayState> ptr = std::make_shared<PlayState>();
     GameState::stack.push_back(ptr);
 }
 
@@ -28,9 +31,16 @@ int main()
                 Settings::screen_height), "TD42");
     // Init
     init();
+    const double step0 = 1;
+    const double step = step0 / FPS;
+    std::chrono::time_point<std::chrono::system_clock> start_time;
+    std::chrono::time_point<std::chrono::system_clock> save_time;
+    std::chrono::duration<double> elapsed;
+    double elapsed_time = step;
     // Start the game loop
-    while (window.isOpen() && !GameState::stack.empty())
+    for (unsigned t; window.isOpen() && !GameState::stack.empty();)
     {
+        start_time = std::chrono::system_clock::now();
         // Process events
         sf::Event event;
         while (window.pollEvent(event))
@@ -45,10 +55,21 @@ int main()
         // Clear screen
         window.clear();
         auto state = GameState::stack.back();
-        state->update(42);;
+        state->update(elapsed_time * 1000);
         state->draw(window);
         // Update the window
         window.display();
+        save_time = std::chrono::system_clock::now();
+        elapsed = save_time - start_time;
+        elapsed_time = elapsed.count();
+        if (elapsed_time < step)
+        {
+            t = (step - elapsed_time) * 1000;
+            double tot = t;
+            elapsed_time += tot / 1000;
+            usleep(t);
+        }
+
     }
     return EXIT_SUCCESS;
 }
