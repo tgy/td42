@@ -12,7 +12,7 @@ class TankSoldier : public Mob
         static sf::Texture tank_texture_;
         static char initialized;
         TankSoldier(unsigned x, unsigned y)
-            : Mob(20, x, y, 0, 5, 0, 10, 25, 0, 0, -0.1f, 0.25f)
+            : Mob(20, x, y, 0, 5, 0, 10, 50, 0, 0, -0.1f, 0.25f)
         {
             if (initialized == 0)
             {
