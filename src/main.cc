@@ -48,7 +48,6 @@ int main()
         EventHandler::call_handler(window, state);
         // Clear screen
         window.clear();
-        std::cout << "Time: " << elapsed_time * 1000  << std::endl;
         state->update(elapsed_time * 1000);
         state->draw(window);
         // Update the window

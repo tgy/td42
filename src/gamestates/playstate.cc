@@ -27,7 +27,7 @@ PlayState::PlayState(std::string map)
         throw std::logic_error("Could not load map '" + map + "'.");
     Map::init();
     Map::init_draw(100, 100);
-    Map::init_draw(0, 0);
+    Map::init_draw(0, 50);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
     Player::init(42, 10, std::chrono::system_clock::now());
