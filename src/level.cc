@@ -15,8 +15,10 @@ Level::Level()
 Level::Level(std::string path)
 {
     std::ifstream infile(path);
-    std::getline(infile, this->series_);
-    series_.erase(std::remove_if(series_.begin(), series_.end(), isspace));
+    if (infile.fail())
+        this->series_ = "1122132233232223333311233";
+    else
+        std::getline(infile, this->series_);
 }
 
 bool Level::make_mob()
@@ -28,6 +30,8 @@ bool Level::make_mob()
         return true;
 
     char c = this->series_[0];
+
+    std::cout << "making mobe " << c << std::endl;
 
     switch (c)
     {

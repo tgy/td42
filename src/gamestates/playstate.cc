@@ -53,6 +53,14 @@ void PlayState::insert_mode(std::shared_ptr<Turret> t)
 void PlayState::exit_insert_mode()
 {
     turret_ = nullptr;
+
+    this->levels.push_back(Level("resources/levels/1.td42"));
+    this->levels.push_back(Level("resources/levels/2.td42"));
+    this->levels.push_back(Level("resources/levels/3.td42"));
+    this->levels.push_back(Level("resources/levels/4.td42"));
+    this->levels.push_back(Level("resources/levels/5.td42"));
+
+    ms_before_next_level = 100;
 }
 
 void PlayState::exit_insert_mode_and_create()
@@ -94,5 +102,27 @@ void PlayState::draw(sf::RenderWindow& w)
 
 void PlayState::update(unsigned elapsed_ms)
 {
+    if (this->levels.size() == 0)
+    {
+        std::cout << "victory!!" << std::endl;
+        // TODO VICTORY !!!
+    }
+    else if (ms_before_next_level <= 0)
+    {
+        if (ms_before_next_mob <= 0)
+        {
+            if (!this->levels.front().make_mob())
+            {
+                this->levels.pop_front();
+                ms_before_next_level = TIME_BETWEEN_LEVELS;
+            }
+            else
+                ms_before_next_mob = TIME_BETWEEN_MOBS;
+        }
+        else
+            ms_before_next_mob -= elapsed_ms;
+    }
+    else
+        ms_before_next_level -= elapsed_ms;
     ++elapsed_ms;
 }
