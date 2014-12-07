@@ -106,6 +106,11 @@ bool is_arrived(float x1, float x2, float y1, float y2)
 
 void PlayState::update(unsigned elapsed_ms)
 {
+    static std::chrono::time_point<std::chrono::system_clock> time;
+    std::chrono::duration<double> elapsed =
+        std::chrono::system_clock::now() - time;
+    time = std::chrono::system_clock::now();
+    std::cout << std::to_string(elapsed.count()) << std::endl;
     if (this->levels.size() == 0 && Map::ennemies.empty())
     {
         GameState::stack.pop_back();

@@ -64,7 +64,6 @@ int main()
             elapsed_time += tot / 1000;
             usleep(t);
         }
-
     }
     return EXIT_SUCCESS;
 }
