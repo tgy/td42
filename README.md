@@ -29,3 +29,13 @@ easy as fast to set-up.
 # Biblio
 
 https://github.com/LaurentGomila/SFML/wiki/Tutorial:-Basic-Game-Engine
+
+# Bonii
+
+    - Gestion de la transparence
+    - Affichage de la tour pendant son placement
+    - Keyboard shortcuts
+    - Open field mode : Pathfinding
+    - Map elements
+    - Waves
+    - Earned money varies with unit type
