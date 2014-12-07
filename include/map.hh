@@ -52,6 +52,8 @@ class Map
         static void init_draw(float x1, float y1);
         static void draw(sf::RenderWindow& w);
         static void map_to_screen(float x, float y, float& rx, float &ry);
+        static void screen_to_map(unsigned x, unsigned y,
+                                  unsigned& rx, unsigned& ry);
         static float tile_w_;
         static float tile_h_;
     private:

@@ -178,3 +178,9 @@ void Map::map_to_screen(float x, float y, float& rx, float &ry)
     rx = off_x_ + x * tile_w_;
     ry = off_y_ + y * tile_h_;
 }
+
+void Map::screen_to_map(unsigned x, unsigned y, unsigned& rx, unsigned& ry)
+{
+    rx = x / Map::tile_w_;
+    ry = y / Map::tile_h_;
+}

@@ -46,6 +46,8 @@ void PlayState::draw(sf::RenderWindow& w)
     TextDrawer::display_time(w);
     TextDrawer::display_lifes(w);
     TextDrawer::display_money(w);
+    TextDrawer::display_mouse_coords(w);
+    TextDrawer::display_mouse_coords_on_map(w);
 
     //sf::Text text;
 
