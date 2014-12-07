@@ -2,7 +2,6 @@
 # define GAMESTATE_HH
 # include <list>
 # include <memory>
-# include <SFML/Audio.hpp>
 # include <SFML/Graphics.hpp>
 
 class GameState

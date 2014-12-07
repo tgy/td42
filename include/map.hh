@@ -16,6 +16,7 @@ enum CellType
     Obstacle,
     Blocking_obstacle
 };
+
 class Cell
 {
     public:
