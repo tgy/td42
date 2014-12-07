@@ -13,7 +13,7 @@ class FootSoldier : public Mob
         static sf::Texture foot_texture_;
         static char initialized;
         FootSoldier(unsigned x, unsigned y)
-            : Mob(20, x, y, 0, 10, 0, 100, 0, 0, 0, 0, 0)
+            : Mob(20, x, y, 0, 10, 0, 100, 0, 0, 0, -0.07f, 0.25f)
         {
             if (initialized == 0)
             {
@@ -26,7 +26,7 @@ class FootSoldier : public Mob
                 throw std::logic_error("Could not load foot soldier Img");
             texture_ = &foot_texture_;
             sf::Sprite s(foot_texture_);
-            float w = Map::tile_w_ * 0.9f;
+            float w = Map::tile_w_ * 1.3f;
             auto pos = foot_texture_.getSize();
             float scale = w / pos.x;
             sprite_ = s;

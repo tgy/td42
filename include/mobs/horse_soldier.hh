@@ -12,7 +12,7 @@ class HorseSoldier : public Mob
         static sf::Texture horse_texture_;
         static char initialized;
         HorseSoldier(unsigned x, unsigned y)
-            : Mob(20, x, y, 0, 20, 0, 200, 3, 0, 0, 0, 0)
+            : Mob(20, x, y, 0, 20, 0, 200, 3, 0, 0, -0.07f, 0.25f)
         {
             if (initialized == 0)
             {
@@ -25,7 +25,7 @@ class HorseSoldier : public Mob
                 throw std::logic_error("Could not load Horse Soldier Img");
             texture_ = &horse_texture_;
             sf::Sprite s(horse_texture_);
-            float w = Map::tile_w_ * 0.9f;
+            float w = Map::tile_w_ * 1.3f;
             auto pos = horse_texture_.getSize();
             float scale = w / pos.x;
             sprite_ = s;

@@ -32,10 +32,10 @@ PlayState::PlayState(std::string map)
         Map::turrets.push_front(std::make_shared<SuperTurret>(2, i));
     for (unsigned i = 0; i < 5; ++i)
         Map::ennemies.push_front(std::make_shared<FootSoldier>(3, i));
-    /*for (unsigned i = 0; i < 5; ++i)
-      Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
-      for (unsigned i = 0; i < 5; ++i)
-      Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));*/
+    for (unsigned i = 0; i < 5; ++i)
+        Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
+    for (unsigned i = 0; i < 5; ++i)
+        Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));
 }
 
 void PlayState::draw(sf::RenderWindow& w)

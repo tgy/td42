@@ -11,7 +11,7 @@ class SuperTurret : public Turret
         static sf::Texture super_texture_;
         static char initialized;
         SuperTurret(unsigned x, unsigned y)
-            : Turret(50, x, y, 0, 300, 5, 30, 3, 0.05f, 0.25f)
+            : Turret(50, x, y, 0, 300, 5, 30, 3, 0.05f, 0.40f)
         {
             if (initialized == 0)
             {
@@ -24,7 +24,7 @@ class SuperTurret : public Turret
                 throw std::logic_error("Could not load Sniper Turret Img");
             texture_ = &super_texture_;
             sf::Sprite s(super_texture_);
-            float w = Map::tile_w_ * 0.9f;
+            float w = Map::tile_w_ * 1.5f;
             auto pos = super_texture_.getSize();
             float scale = w / pos.x;
             sprite_ = s;
