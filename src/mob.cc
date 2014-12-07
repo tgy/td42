@@ -45,7 +45,7 @@ void Mob::move()
     if (!path_.empty())
     {
         std::pair<int, int> next = *path_.begin();
-        if ((fabs(next.first - x_) < 0.02f && fabs(next.second - y_) < 0.02f)
+        if ((fabs(next.first - x_) < 0.1f && fabs(next.second - y_) < 0.1f)
             || old_x_ == -1 || old_y_ == -1)
         {
             old_x_ = next.first;
@@ -69,13 +69,13 @@ void Mob::attack(unsigned elapsed_ms)
 
 void Mob::update_pathfinding()
 {
+    std::pair<int, int> curpos;
+    curpos.first = x_;
+    curpos.second = y_;
+    if (!path_.empty())
+        curpos = path_.front();
     this->path_.clear();
     std::pair<int, int> t(this->x_, this->y_);
     this->path_ = pathfind(t, Map::finish_mobs);
-    std::cout << "Starting path..." << std::endl;
-    for (auto node : path_)
-        std::cout << "Node: " << node.first << "x" << node.second << std::endl;
-    std::cout << "End...." << std::endl;
-    old_x_ = -1;
-    old_y_ = -1;
+    path_.push_front(curpos);
 }
