@@ -96,9 +96,12 @@ void Entity::draw(sf::RenderWindow& w)
     float px;
     float py;
     Map::map_to_screen(x_ + 0.5f, y_ + 0.5f, px, py);
-    px += off_x_;
-    py += off_y_;
+    px += off_x_ * Map::tile_w_;
+    py += off_y_ * Map::tile_h_;
     auto pos = texture_->getSize();
+    auto scale = sprite_.getScale();
+    pos.x *= scale.x;
+    pos.y *= scale.y;
     sprite_.setPosition(px - pos.x / 2, py - pos.y);
     w.draw(sprite_);
 }

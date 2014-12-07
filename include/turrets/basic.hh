@@ -1,7 +1,9 @@
 #ifndef BASIC_HH
 # define BASIC_HH
 # include <stdexcept>
-# include "../turret.hh"
+# include <SFML/Graphics.hpp>
+# include "map.hh"
+# include "turret.hh"
 
 class BasicTurret : public Turret
 {
@@ -9,7 +11,7 @@ class BasicTurret : public Turret
         static sf::Texture basic_texture_;
         static char initialized;
         BasicTurret(unsigned x, unsigned y)
-            : Turret(10, x, y, 0, 100, 0, 10, 3, 0, 0)
+            : Turret(10, x, y, 0, 100, 0, 10, 3, 0.05f, 0.25f)
         {
             if (initialized == 0)
             {
@@ -22,7 +24,11 @@ class BasicTurret : public Turret
                 throw std::logic_error("Could not load Basic Turret Img");
             texture_ = &basic_texture_;
             sf::Sprite s(basic_texture_);
+            float w = Map::tile_w_ * 0.9f;
+            auto pos = basic_texture_.getSize();
+            float scale = w / pos.x;
             sprite_ = s;
+            sprite_.setScale(scale, scale);
         }
 };
 

@@ -49,14 +49,14 @@ class Map
 
         static unsigned width;
         static unsigned height;
-        static void init_draw(float x1, float y1, float x2, float y2);
+        static void init_draw(float x1, float y1);
         static void draw(sf::RenderWindow& w);
         static void map_to_screen(float x, float y, float& rx, float &ry);
+        static float tile_w_;
+        static float tile_h_;
     private:
         static float off_x_;
         static float off_y_;
-        static float tile_w_;
-        static float tile_h_;
         static std::string cell_to_str(CellType type);
         static std::vector<sf::Texture> textures_;
 };

@@ -3,9 +3,15 @@
 #include "map.hh"
 #include "turret.hh"
 #include "turrets/basic.hh"
+#include "turrets/sniper.hh"
+#include "turrets/super.hh"
 
 sf::Texture BasicTurret::basic_texture_;
 char BasicTurret::initialized = 0;
+sf::Texture SniperTurret::sniper_texture_;
+char SniperTurret::initialized = 0;
+sf::Texture SuperTurret::super_texture_;
+char SuperTurret::initialized = 0;
 
 Turret::Turret(unsigned life, float x, float y, float direction,
                unsigned recharge_time, unsigned fixed_res, unsigned power,

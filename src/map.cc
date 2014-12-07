@@ -107,7 +107,7 @@ std::string Map::cell_to_str(CellType type)
     }
 }
 
-void Map::init_draw(float x1, float y1, float x2, float y2)
+void Map::init_draw(float x1, float y1)
 {
     textures_ = std::vector<sf::Texture>(4);
     if (!textures_[Blocking_obstacle].loadFromFile("resources/tiles/block.png")
@@ -115,8 +115,8 @@ void Map::init_draw(float x1, float y1, float x2, float y2)
             || !textures_[Empty].loadFromFile("resources/tiles/empty.png")
             || !textures_[Tower].loadFromFile("resources/tiles/empty.png"))
         throw std::logic_error("Could not load tile1.");
-    float tsize_x = (x2 - x1) / width;
-    float tsize_y = (y2 - y1) / height;
+    float tsize_x = 60;
+    float tsize_y = 60;
     float pos_x = x1;
     for (unsigned x = 0; x < width; ++x, pos_x += tsize_x)
     {
@@ -130,6 +130,9 @@ void Map::init_draw(float x1, float y1, float x2, float y2)
             cells[x][y].sprite = s;
             cells[x][y].sprite.setPosition(pos_x, pos_y);
             cells[x][y].sprite.setScale(scale_x, scale_y);
+            //TODO: delete this
+            sf::Color c(rand() % 256, rand() % 256, rand() % 256, 255);
+            cells[x][y].sprite.setColor(c);
         }
     }
     off_x_ = x1;
