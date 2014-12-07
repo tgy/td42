@@ -12,7 +12,7 @@ class StartState : public GameState
     protected:
         sf::Texture logo_;
         sf::Sprite logo_sprite_;
-        float logo_step_;
+        float logo_load_time_;
         float logo_size_;
         float logo_final_size_;
         float logo_x_;

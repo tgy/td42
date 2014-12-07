@@ -27,6 +27,7 @@ class Entity
         virtual void harakiri();
 
         void draw(sf::RenderWindow& w);
+        void set_opacity(unsigned char alpha);
 
     protected:
         unsigned life_;
@@ -41,6 +42,7 @@ class Entity
         float range_;
         sf::Sprite sprite_;
         sf::Texture *texture_;
+        sf::Color color_;
 };
 
 #endif /* !ENTITY_HH */

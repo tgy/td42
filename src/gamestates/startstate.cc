@@ -6,7 +6,7 @@
 #include "gamestates/playstate.hh"
 
 StartState::StartState()
-    : logo_step_{0.02f}, logo_size_{0}, logo_final_size_{0.8},
+    : logo_load_time_{1000}, logo_size_{0}, logo_final_size_{0.8},
     logo_x_{0}, logo_y_{0}, wait_time_{1000}
 {
     if (!logo_.loadFromFile("resources/logo.png"))
@@ -29,7 +29,7 @@ void StartState::update(unsigned elapsed_ms)
     // Initialisation of
     if (logo_size_ < logo_final_size_)
     {
-        logo_size_ += logo_step_;
+        logo_size_ += logo_final_size_ * elapsed_ms / logo_load_time_;
         if (logo_size_ > logo_final_size_)
             logo_size_ = logo_final_size_;
     }

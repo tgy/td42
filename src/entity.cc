@@ -9,7 +9,7 @@ Entity::Entity(unsigned life, float x, float y, float direction,
                float off_y)
       : life_{life}, life_max_{life}, fixed_res_{fixed_res}, power_{power},
         x_{x}, y_{y}, off_x_{off_x}, off_y_{off_y}, direction_{direction},
-        range_{range}, texture_{nullptr}
+        range_{range}, texture_{nullptr}, color_{sf::Color(255, 255, 255, 255)}
 {
 }
 
@@ -104,4 +104,10 @@ void Entity::draw(sf::RenderWindow& w)
     pos.y *= scale.y;
     sprite_.setPosition(px - pos.x / 2, py - pos.y);
     w.draw(sprite_);
+}
+
+void Entity::set_opacity(unsigned char alpha)
+{
+    color_.a  = alpha;
+    sprite_.setColor(color_);
 }
