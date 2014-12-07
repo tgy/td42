@@ -2,6 +2,10 @@
 #include <cmath>
 #include "map.hh"
 #include "turret.hh"
+#include "turrets/basic.hh"
+
+sf::Texture BasicTurret::basic_texture_;
+char BasicTurret::initialized = 0;
 
 Turret::Turret(unsigned life, float x, float y, float direction,
                unsigned recharge_time, unsigned fixed_res, unsigned power,
