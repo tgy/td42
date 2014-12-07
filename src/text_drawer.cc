@@ -97,7 +97,7 @@ void TextDrawer::display_restart(sf::RenderWindow& w)
 
     sf::Text text;
     text.setFont(f);
-    text.setPosition(Settings::screen_width / 2 - 100,
+    text.setPosition(Settings::screen_width / 2 - 175,
                      Settings::screen_height / 2 + 100);
     text.setCharacterSize(40);
     text.setColor(sf::Color::Blue);

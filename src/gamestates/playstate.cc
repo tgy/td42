@@ -131,7 +131,7 @@ void PlayState::update(unsigned elapsed_ms)
                 (*i)->harakiri();
                 if (!Player::remove_a_life())
                 {
-                    std::cout << "U LOST BICTH" << std::endl;
+                std::cout << "U LOST!" << std::endl;
                     GameState::stack.pop_back();
                     auto ptr = std::make_shared<EndState>();
                     GameState::stack.push_back(ptr);
