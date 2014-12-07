@@ -149,7 +149,7 @@ void Map::init_draw(float x1, float y1)
 static bool entities_compare(std::shared_ptr<Entity> a,
                              std::shared_ptr<Entity> b)
 {
-    return b->get_pos().second > a->get_pos().second;
+    return b->get_pos().second - a->get_pos().second > 0.0001f;
 }
 
 void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)

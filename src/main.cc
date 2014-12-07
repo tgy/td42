@@ -4,6 +4,7 @@
 #include <chrono>
 #include <unistd.h>
 #include <time.h>
+#include <SFML/Window/VideoMode.hpp>
 
 #include "settings.hh"
 #include "gamestate.hh"
@@ -27,8 +28,9 @@ void init()
 int main()
 {
     // Create the main window
-    Settings::screen_width = 1368;
-    Settings::screen_height = 768;
+    sf::VideoMode v = sf::VideoMode::getDesktopMode();
+    Settings::screen_width = v.width;
+    Settings::screen_height = v.height;
     sf::RenderWindow window(sf::VideoMode(Settings::screen_width,
                 Settings::screen_height), "TD42");
     // Init
