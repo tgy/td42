@@ -58,6 +58,54 @@ void TextDrawer::display_time(sf::RenderWindow& w)
     w.draw(text);
 }
 
+void TextDrawer::display_lost(sf::RenderWindow& w)
+{
+    sf::Font f;
+    f.loadFromFile("resources/GoodDog.otf");
+
+    sf::Text text;
+    text.setFont(f);
+    text.setPosition(Settings::screen_width / 2 - 50,
+                     Settings::screen_height / 2);
+    text.setCharacterSize(40);
+    text.setColor(sf::Color::Red);
+    text.setString("You lost!");
+
+    w.draw(text);
+}
+
+void TextDrawer::display_win(sf::RenderWindow& w)
+{
+    sf::Font f;
+    f.loadFromFile("resources/GoodDog.otf");
+
+    sf::Text text;
+    text.setFont(f);
+    text.setPosition(Settings::screen_width / 2 - 50,
+                     Settings::screen_height / 2);
+    text.setCharacterSize(40);
+    text.setColor(sf::Color::Yellow);
+    text.setString("You won!");
+
+    w.draw(text);
+}
+
+void TextDrawer::display_restart(sf::RenderWindow& w)
+{
+    sf::Font f;
+    f.loadFromFile("resources/GoodDog.otf");
+
+    sf::Text text;
+    text.setFont(f);
+    text.setPosition(Settings::screen_width / 2 - 100,
+                     Settings::screen_height / 2 + 100);
+    text.setCharacterSize(40);
+    text.setColor(sf::Color::Blue);
+    text.setString("== Press 'enter' to restart ==");
+
+    w.draw(text);
+}
+
 void TextDrawer::display_mouse_coords(sf::RenderWindow& w)
 {
     sf::Font f;

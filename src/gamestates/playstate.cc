@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "gamestates/playstate.hh"
+#include "gamestates/endstate.hh"
 #include "settings.hh"
 #include "map_reader.hh"
 #include "player.hh"
@@ -126,7 +127,9 @@ void PlayState::update(unsigned elapsed_ms)
             if (!Player::remove_a_life())
             {
                 std::cout << "U LOST BICTH" << std::endl;
-                //FIXME: we lost. :(
+                GameState::stack.pop_back();
+                std::shared_ptr<EndState> ptr = std::make_shared<EndState>();
+                GameState::stack.push_back(ptr);
             }
             i = Map::ennemies.erase(i);
         }
