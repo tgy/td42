@@ -2,7 +2,7 @@
 #include <memory>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-//#include "settings.hh"
+#include "settings.hh"
 
 #include "gamestate.hh"
 #include "gamestates/startstate.hh"
