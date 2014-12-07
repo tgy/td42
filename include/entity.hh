@@ -12,7 +12,7 @@ class Entity
         virtual ~Entity() = default;
 
         bool operator<(const Entity& e);
-        std::pair<float, float> get_pos();
+        std::pair<float, float> get_pos() const;
         float get_direction();
         float get_range();
         unsigned get_life();

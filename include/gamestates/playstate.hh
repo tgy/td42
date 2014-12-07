@@ -8,7 +8,7 @@
 # include "turret.hh"
 
 # define TIME_BETWEEN_MOBS 600
-# define TIME_BETWEEN_LEVELS 10000
+# define TIME_BETWEEN_LEVELS 6000
 
 class PlayState : public GameState
 {

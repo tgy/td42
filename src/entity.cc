@@ -14,7 +14,7 @@ Entity::Entity(unsigned life, float x, float y, float direction,
 {
 }
 
-std::pair<float, float> Entity::get_pos()
+std::pair<float, float> Entity::get_pos() const
 {
     return std::pair<float, float>(this->x_, this->y_);
 }

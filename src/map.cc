@@ -3,6 +3,7 @@
 #include <stdexcept>
 
 #include "settings.hh"
+#include "entity.hh"
 #include "map.hh"
 
 //#define START "S"
@@ -145,6 +146,12 @@ void Map::init_draw(float x1, float y1)
     tile_h_ = tsize_y;
 }
 
+static bool entities_compare(std::shared_ptr<Entity> a,
+                             std::shared_ptr<Entity> b)
+{
+    return b->get_pos().second > a->get_pos().second;
+}
+
 void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)
 {
     for (unsigned x = 0; x < width; ++x)
@@ -152,67 +159,75 @@ void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)
             w.draw(cells[x][y].sprite);
     Map::ennemies.sort();
     Map::turrets.sort();
-    auto ei = Map::ennemies.begin();
-    auto ti = Map::turrets.begin();
-    auto ee = Map::ennemies.end();
-    auto te = Map::turrets.end();
-    while (ei != ee || ti != te)
-    {
-        if (ti == te)
-            for (; ei != ee;)
-            {
-                if (t == nullptr ||  **ei < *t)
-                {
-                    (*ei)->draw(w);
-                    ++ei;
-                }
-                else
-                {
-                    t->draw(w);
-                    t = nullptr;
-                }
-            }
-        else if (ei == ee)
-            for (; ti != te;)
-            {
-                if (t == nullptr || **ti < *t)
-                {
-                    (*ti)->draw(w);
-                    ++ti;
-                }
-                else
-                {
-                    t->draw(w);
-                    t = nullptr;
-                }
-            }
-        else if (**ei < **ti)
-        {
-            if (t == nullptr || **ei < *t)
-            {
-                (*ei)->draw(w);
-                ++ei;
-            }
-            else
-            {
-                t->draw(w);
-                t = nullptr;
-            }
-        }
-        else
-        {
-            if (t == nullptr || **ti < *t)
-            {
-                (*ti)->draw(w);
-                ++ti;
-            }
-            else
-            {
-                t->draw(w);
-                t = nullptr;
-            }
-        }
-    }
+    //auto ei = Map::ennemies.begin();
+    //auto ti = Map::turrets.begin();
+    //auto ee = Map::ennemies.end();
+    //auto te = Map::turrets.end();
+    std::vector<std::shared_ptr<Entity>> entities;
+    entities.insert(entities.end(), Map::ennemies.begin(), Map::ennemies.end());
+    entities.insert(entities.end(), Map::turrets.begin(), Map::turrets.end());
+    std::sort(entities.begin(), entities.end(), entities_compare);
+
+    for (const auto& entity : entities)
+        entity->draw(w);
+
+    //while (ei != ee || ti != te)
+    //{
+        //if (ti == te)
+            //for (; ei != ee;)
+            //{
+                //if (t == nullptr ||  **ei < *t)
+                //{
+                    //(*ei)->draw(w);
+                    //++ei;
+                //}
+                //else
+                //{
+                    //t->draw(w);
+                    //t = nullptr;
+                //}
+            //}
+        //else if (ei == ee)
+            //for (; ti != te;)
+            //{
+                //if (t == nullptr || **ti < *t)
+                //{
+                    //(*ti)->draw(w);
+                    //++ti;
+                //}
+                //else
+                //{
+                    //t->draw(w);
+                    //t = nullptr;
+                //}
+            //}
+        //else if (**ei < **ti)
+        //{
+            //if (t == nullptr || **ei < *t)
+            //{
+                //(*ei)->draw(w);
+                //++ei;
+            //}
+            //else
+            //{
+                //t->draw(w);
+                //t = nullptr;
+            //}
+        //}
+        //else
+        //{
+            //if (t == nullptr || **ti < *t)
+            //{
+                //(*ti)->draw(w);
+                //++ti;
+            //}
+            //else
+            //{
+                //t->draw(w);
+                //t = nullptr;
+            //}
+        //}
+    //}
     if (t != nullptr)
         t->draw(w);
 }

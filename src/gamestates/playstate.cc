@@ -110,6 +110,7 @@ void PlayState::update(unsigned elapsed_ms)
         {
             if (!this->levels.front().make_mob())
             {
+                std::cout << "NEW LEVEL" << std::endl;
                 this->levels.pop_front();
                 ms_before_next_level = TIME_BETWEEN_LEVELS;
             }
