@@ -39,3 +39,5 @@ https://github.com/LaurentGomila/SFML/wiki/Tutorial:-Basic-Game-Engine
     - Map elements
     - Waves
     - Earned money varies with unit type
+    - Loading screen
+    - CMake build system
