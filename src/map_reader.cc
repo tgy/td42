@@ -39,10 +39,11 @@ bool MapReader::read_map(std::string file)
     std::ifstream mapfile(file);
     if (mapfile.is_open())
     {
-        unsigned x = 0;
+        unsigned x;
         unsigned y = 0;
         while (getline(mapfile, line))
         {
+            x = 0;
             for (char& c : line)
             {
                 switch (c)
@@ -56,7 +57,7 @@ bool MapReader::read_map(std::string file)
                         Map::cells[x][y].type = Tower;
                         break;
                     case EMPTY:
-                        Map::cells[x][y].type = Empty;
+                        Map::cells[x][y].type = Empty; //TODO:Invalid read/write
                         break;
                     case FINNISH:
                         Map::cells[x][y].type = Empty;
