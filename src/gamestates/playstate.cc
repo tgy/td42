@@ -56,10 +56,15 @@ void PlayState::exit_insert_mode_and_create()
 {
     if (turret_ != nullptr)
     {
+        if (!Player::remove_money(turret_->get_cost()))
+        {
+            turret_ = nullptr;
+            return;
+        }
         auto pos = turret_->get_pos();
         if (pos.first < 0 || pos.first >= Map::width || pos.second < 0
-            || pos.second >= Map::height
-            || Map::cells[pos.first][pos.second].type != CellType::Empty)
+                || pos.second >= Map::height
+                || Map::cells[pos.first][pos.second].type != CellType::Empty)
         {
             turret_ = nullptr;
             return;
@@ -132,6 +137,7 @@ void PlayState::update(unsigned elapsed_ms)
                 (*i)->harakiri();
                 if (!Player::remove_a_life())
                 {
+                    std::cout << "U LOST!" << std::endl;
                     GameState::stack.pop_back();
                     auto ptr = std::make_shared<EndState>();
                     GameState::stack.push_back(ptr);

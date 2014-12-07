@@ -16,9 +16,9 @@ char SuperTurret::initialized = 0;
 
 Turret::Turret(unsigned life, float x, float y, float direction,
                unsigned recharge_time, unsigned fixed_res, unsigned power,
-               float range, float off_x, float off_y)
+               float range, float off_x, float off_y, unsigned cost)
       : Entity(life, x, y, direction, power, range, fixed_res, off_x, off_y),
-        recharge_time_(recharge_time), recharge_{0}, spy_{nullptr}
+        recharge_time_(recharge_time), recharge_{0}, cost_{cost}, spy_{nullptr}
 {
 }
 
@@ -74,4 +74,8 @@ void Turret::set_pos(unsigned x, unsigned y)
 {
     x_ = x;
     y_ = y;
+}
+unsigned Turret::get_cost()
+{
+    return cost_;
 }
