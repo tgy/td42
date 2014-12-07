@@ -17,6 +17,7 @@ class EventHandler
         static void handle_playstate(sf::RenderWindow& w,
                                      std::shared_ptr<PlayState>);
         static void handle_startstate(sf::RenderWindow& w);
+        static void handle_endstate(sf::RenderWindow& w);
 };
 
 #endif /* EVENT_HANDLER_HH */

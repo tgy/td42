@@ -36,7 +36,8 @@ PlayState::PlayState(std::string map)
     this->levels.push_back(Level("resources/levels/3.td42"));
     this->levels.push_back(Level("resources/levels/4.td42"));
     this->levels.push_back(Level("resources/levels/5.td42"));
-
+    ms_before_next_level = 100;
+    ms_before_next_mob = TIME_BETWEEN_MOBS;
 }
 
 void PlayState::insert_mode(std::shared_ptr<Turret> t)

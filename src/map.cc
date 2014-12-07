@@ -29,6 +29,8 @@ float Map::tile_h_;
 
 void Map::init()
 {
+    ennemies.clear();
+    turrets.clear();
     cells = std::vector<std::vector<Cell>>(width);
 
     for (unsigned i = 0; i < width; ++i)
