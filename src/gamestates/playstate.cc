@@ -1,5 +1,4 @@
-#include <chrono>
-#include <thread>
+#include <stdexcept>
 #include <cassert>
 #include <iostream>
 
@@ -19,6 +18,7 @@ PlayState::PlayState(std::string map)
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
 }
+
 void PlayState::draw(sf::RenderWindow& w)
 {
     Map::draw(w);
