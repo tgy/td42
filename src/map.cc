@@ -22,6 +22,11 @@ unsigned Settings::screen_width;
 unsigned Settings::screen_height;
 unsigned Map::width;
 unsigned Map::height;
+float Map::off_x_;
+float Map::off_y_;
+float Map::tile_w_;
+float Map::tile_h_;
+
 
 void Map::init(unsigned width, unsigned height)
 {
@@ -130,6 +135,10 @@ void Map::init_draw(float x1, float y1, float x2, float y2)
             cells[x][y].sprite.setScale(scale_x, scale_y);
         }
     }
+    off_x_ = x1;
+    off_y_ = y1;
+    tile_w_ = tsize_x;
+    tile_h_ = tsize_y;
 }
 
 void Map::draw(sf::RenderWindow& w)
@@ -162,4 +171,10 @@ void Map::draw(sf::RenderWindow& w)
             ++ti;
         }
     }
+}
+
+void Map::map_to_screen(float x, float y, float& rx, float &ry)
+{
+    rx = off_x_ + x * tile_w_;
+    ry = off_y_ + y * tile_h_;
 }

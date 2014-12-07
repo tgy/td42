@@ -1,6 +1,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include <utility>
+#include "map.hh"
 #include "entity.hh"
 
 Entity::Entity(unsigned life, float x, float y, float direction,
@@ -8,7 +9,7 @@ Entity::Entity(unsigned life, float x, float y, float direction,
                float off_y)
       : life_{life}, life_max_{life}, fixed_res_{fixed_res}, power_{power},
         x_{x}, y_{y}, off_x_{off_x}, off_y_{off_y}, direction_{direction},
-        range_{range}
+        range_{range}, texture_{nullptr}
 {
 }
 
@@ -90,5 +91,14 @@ bool Entity::operator<(const Entity& e)
 
 void Entity::draw(sf::RenderWindow& w)
 {
-    w.clear();
+    if (texture_ == nullptr)
+        return;
+    float px;
+    float py;
+    Map::map_to_screen(x_, y_, px, py);
+    px += off_x_;
+    py += off_y_;
+    auto pos = texture_->getSize();
+    sprite_.setPosition(px - pos.x / 2, py - pos.y);
+    w.draw(sprite_);
 }

@@ -39,6 +39,7 @@ class Entity
     float direction_;
     float range_;
     sf::Sprite sprite_;
+    sf::Texture *texture_;
 };
 
 #endif /* !ENTITY_HH */
