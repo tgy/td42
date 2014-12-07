@@ -13,7 +13,7 @@ class FootSoldier : public Mob
         static sf::Texture foot_texture_;
         static char initialized;
         FootSoldier(unsigned x, unsigned y)
-            : Mob(20, x, y, 0, 10, 0, 0, 100, 0, 0, -0.07f, 0.25f)
+            : Mob(20, x, y, 0, 10, 0, 0, 10, 0, 0, -0.07f, 0.25f)
         {
             if (initialized == 0)
             {
