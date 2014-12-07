@@ -62,7 +62,13 @@ int main()
             t = (step - elapsed_time) * 1000;
             double tot = t;
             elapsed_time += tot / 1000;
-            usleep(t);
+            //std::chrono::time_point<std::chrono::system_clock> b_sleep =
+                //std::chrono::system_clock::now();
+            usleep(t * 1000);
+            //std::chrono::time_point<std::chrono::system_clock> a_sleep =
+                //std::chrono::system_clock::now();
+            //std::chrono::duration<double> stime = a_sleep - b_sleep;
+            //std::cout << "Sleep: " << stime.count() * 1000 << std::endl;
         }
     }
     return EXIT_SUCCESS;
