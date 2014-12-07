@@ -61,3 +61,9 @@ void Turret::attack()
         spy_->take_attack(this->get_power());
     }
 }
+
+void Turret::set_pos(unsigned x, unsigned y)
+{
+    x_ = x;
+    y_ = y;
+}

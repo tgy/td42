@@ -22,16 +22,11 @@ PlayState::PlayState(std::string map)
     if (!MapReader::set_size(map))
         throw std::logic_error("Could not load map '" + map + "'.");
     Map::init();
-    Map::print(std::cout);
-    std::pair<int, int> start(0, 0), end(4, 4);
-    std::list<std::pair<int, int>> path = pathfind(start, end);
-    for (const auto& node : path)
-        Map::cells[node.first][node.second].type = CellType::Obstacle;
-    Map::print(std::cout);
     Map::init_draw(100, 100);
+    Map::init_draw(0, 0);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
-    for (unsigned i = 0; i < 5; ++i)
+    /*for (unsigned i = 0; i < 5; ++i)
         Map::turrets.push_front(std::make_shared<BasicTurret>(0, i));
     for (unsigned i = 0; i < 5; ++i)
         Map::turrets.push_front(std::make_shared<SniperTurret>(1, i));
@@ -42,8 +37,8 @@ PlayState::PlayState(std::string map)
     for (unsigned i = 0; i < 5; ++i)
         Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
     for (unsigned i = 0; i < 5; ++i)
-        Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));
-    Player::init(42, 10, std::chrono::system_clock::now());
+        Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));*/
+    Player::init(5000, 10, std::chrono::system_clock::now());
 }
 
 void PlayState::draw(sf::RenderWindow& w)

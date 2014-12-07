@@ -1,6 +1,7 @@
 #ifndef PLAYSTATE_HH
 # define PLAYSTATE_HH
 # include "gamestate.hh"
+# include "turret.hh"
 
 class PlayState : public GameState
 {
