@@ -116,26 +116,33 @@ void PlayState::update(unsigned elapsed_ms)
     else
         ms_before_next_level -= elapsed_ms;
     for (std::list<std::shared_ptr<Mob>>::iterator i = Map::ennemies.begin();
-         i != Map::ennemies.end();)
+            i != Map::ennemies.end();)
     {
-        (*i)->move();
-        auto pos = (*i)->get_pos();
-        float dx = fabs(pos.first - Map::finish_mobs.first);
-        float dy = fabs(pos.second - Map::finish_mobs.second);
-        if (dx < 0.02f && dy < 0.02f)
-        {
-            (*i)->harakiri();
-            if (!Player::remove_a_life())
-            {
-                std::cout << "U LOST BICTH" << std::endl;
-                GameState::stack.pop_back();
-                std::shared_ptr<EndState> ptr = std::make_shared<EndState>();
-                GameState::stack.push_back(ptr);
-            }
+        if ((*i)->dead())
             i = Map::ennemies.erase(i);
-        }
         else
-            ++i;
+        {
+            (*i)->move();
+            auto pos = (*i)->get_pos();
+            float dx = fabs(pos.first - Map::finish_mobs.first);
+            float dy = fabs(pos.second - Map::finish_mobs.second);
+            if (dx < 0.02f && dy < 0.02f)
+            {
+                (*i)->harakiri();
+                if (!Player::remove_a_life())
+                {
+                    std::cout << "U LOST BICTH" << std::endl;
+                    GameState::stack.pop_back();
+                    auto ptr = std::make_shared<EndState>();
+                    GameState::stack.push_back(ptr);
+                }
+                i = Map::ennemies.erase(i);
+            }
+            else
+                ++i;
+        }
     }
+    for (std::shared_ptr<Turret> turret : Map::turrets)
+        turret->attack(elapsed_ms);
     ++elapsed_ms;
 }

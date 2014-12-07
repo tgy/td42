@@ -162,10 +162,13 @@ void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)
     while (ei != ee || ti != te)
     {
         if (ti == te)
-            for (; ei != ee; ++ei)
+            for (; ei != ee;)
             {
                 if (t == nullptr ||  **ei < *t)
+                {
                     (*ei)->draw(w);
+                    ++ei;
+                }
                 else
                 {
                     t->draw(w);
@@ -173,10 +176,13 @@ void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)
                 }
             }
         else if (ei == ee)
-            for (; ti != te; ++ti)
+            for (; ti != te;)
             {
                 if (t == nullptr || **ti < *t)
+                {
                     (*ti)->draw(w);
+                    ++ti;
+                }
                 else
                 {
                     t->draw(w);

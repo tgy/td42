@@ -1,4 +1,5 @@
 #include <cfloat>
+#include <iostream>
 #include <cmath>
 #include "map.hh"
 #include "turret.hh"
@@ -16,8 +17,8 @@ char SuperTurret::initialized = 0;
 Turret::Turret(unsigned life, float x, float y, float direction,
                unsigned recharge_time, unsigned fixed_res, unsigned power,
                float range, float off_x, float off_y)
-      : Entity(life, x, y, direction, fixed_res, power, range, off_x, off_y),
-        recharge_time_(recharge_time)
+      : Entity(life, x, y, direction, power, range, fixed_res, off_x, off_y),
+        recharge_time_(recharge_time), recharge_{0}, spy_{nullptr}
 {
 }
 
@@ -26,8 +27,10 @@ unsigned Turret::get_recharge_time()
     return this->recharge_time_;
 }
 
-void Turret::attack()
+void Turret::attack(unsigned elapsed_ms)
 {
+    if (recharge_ < 0)
+        recharge_ = 0;
     if (spy_ != nullptr) // Check if we have to forget the current one
     {
         if (spy_->dead())
@@ -38,8 +41,8 @@ void Turret::attack()
     }
     if (spy_ == nullptr) // No ennemy... let's find one.
     {
-        float dist = FLT_MAX;
-        for (auto val : Map::turrets)
+        float dist = range_ + FLT_EPSILON;
+        for (auto val : Map::ennemies)
         {
             float tdist = this->dist_from(*val);
             if (tdist < dist && this->can_view(*val))
@@ -51,14 +54,19 @@ void Turret::attack()
     }
     if (spy_ != nullptr)
     {
-        auto pos = spy_->get_pos();
-        float dx = pos.first - this->x_;
-        float dy = pos.second - this->y_;
-        float r = sqrt(dx * dx + dy * dy);
-        float normalized = dx / r;
-        float angle = acos(normalized);
-        this->direction_ = angle;
-        spy_->take_attack(this->get_power());
+        if (recharge_ <= 0)
+        {
+            auto pos = spy_->get_pos();
+            float dx = pos.first - this->x_;
+            float dy = pos.second - this->y_;
+            float r = sqrt(dx * dx + dy * dy);
+            float normalized = dx / r;
+            float angle = acos(normalized);
+            this->direction_ = angle;
+            spy_->take_attack(this->get_power());
+            recharge_ += recharge_time_;
+        }
+        recharge_ -= elapsed_ms;
     }
 }
 

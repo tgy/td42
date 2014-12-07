@@ -11,11 +11,12 @@ class Turret : public Entity
                unsigned power = 0, float range = 0, float off_x = 0,
                float off_y = 0);
         virtual ~Turret() = default;
-        void attack() override;
+        void attack(unsigned elapsed_ms) override;
         unsigned get_recharge_time();
         void set_pos(unsigned x, unsigned y);
     protected:
         unsigned recharge_time_;
+        int recharge_;
         std::shared_ptr<Entity> spy_;
 };
 

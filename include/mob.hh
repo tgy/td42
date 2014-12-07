@@ -16,7 +16,7 @@ class Mob : public Entity
         float get_speed();
         bool can_fly();
         unsigned get_reward();
-        void attack() override;
+        void attack(unsigned elapsed_ms) override;
         void move();
         void update_pathfinding();
 

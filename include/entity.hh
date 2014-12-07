@@ -23,7 +23,7 @@ class Entity
         bool can_view(Entity& ennemy);
         void take_attack(unsigned power);
         bool dead();
-        virtual void attack() = 0;
+        virtual void attack(unsigned elapsed_ms) = 0;
         virtual void harakiri();
 
         void draw(sf::RenderWindow& w);

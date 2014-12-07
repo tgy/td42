@@ -62,8 +62,9 @@ void Mob::move()
     }
 }
 
-void Mob::attack()
+void Mob::attack(unsigned elapsed_ms)
 {
+    ++elapsed_ms;
 }
 
 void Mob::update_pathfinding()

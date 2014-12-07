@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <utility>
 #include "map.hh"
@@ -63,7 +64,8 @@ float Entity::dist_from(Entity &a)
     auto pos = a.get_pos();
     float dx = pos.first - x_;
     float dy = pos.second - y_;
-    return sqrt(dx * dx + dy * dy);
+    float r = sqrt(dx * dx + dy * dy);
+    return r;
 }
 
 bool Entity::dead()
