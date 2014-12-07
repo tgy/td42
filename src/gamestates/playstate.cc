@@ -12,6 +12,9 @@
 #include "turrets/basic.hh"
 #include "turrets/sniper.hh"
 #include "turrets/super.hh"
+#include "mobs/foot_soldier.hh"
+#include "mobs/horse_soldier.hh"
+#include "mobs/tank_soldier.hh"
 
 PlayState::PlayState(std::string map)
 {
@@ -21,21 +24,18 @@ PlayState::PlayState(std::string map)
     Map::init_draw(0, 0);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
-    Map::turrets.push_front(std::make_shared<BasicTurret>(0, 1));
-    Map::turrets.push_front(std::make_shared<BasicTurret>(0, 2));
-    Map::turrets.push_front(std::make_shared<BasicTurret>(0, 3));
-    Map::turrets.push_front(std::make_shared<BasicTurret>(0, 4));
-    Map::turrets.push_front(std::make_shared<BasicTurret>(0, 0));
-    Map::turrets.push_front(std::make_shared<SniperTurret>(1, 1));
-    Map::turrets.push_front(std::make_shared<SniperTurret>(1, 2));
-    Map::turrets.push_front(std::make_shared<SniperTurret>(1, 3));
-    Map::turrets.push_front(std::make_shared<SniperTurret>(1, 4));
-    Map::turrets.push_front(std::make_shared<SniperTurret>(1, 0));
-    Map::turrets.push_front(std::make_shared<SuperTurret>(2, 1));
-    Map::turrets.push_front(std::make_shared<SuperTurret>(2, 2));
-    Map::turrets.push_front(std::make_shared<SuperTurret>(2, 3));
-    Map::turrets.push_front(std::make_shared<SuperTurret>(2, 4));
-    Map::turrets.push_front(std::make_shared<SuperTurret>(2, 0));
+    for (unsigned i = 0; i < 5; ++i)
+        Map::turrets.push_front(std::make_shared<BasicTurret>(0, i));
+    for (unsigned i = 0; i < 5; ++i)
+        Map::turrets.push_front(std::make_shared<SniperTurret>(1, i));
+    for (unsigned i = 0; i < 5; ++i)
+        Map::turrets.push_front(std::make_shared<SuperTurret>(2, i));
+    for (unsigned i = 0; i < 5; ++i)
+        Map::ennemies.push_front(std::make_shared<FootSoldier>(3, i));
+    /*for (unsigned i = 0; i < 5; ++i)
+      Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
+      for (unsigned i = 0; i < 5; ++i)
+      Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));*/
 }
 
 void PlayState::draw(sf::RenderWindow& w)

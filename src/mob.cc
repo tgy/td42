@@ -5,6 +5,16 @@
 #include "map.hh"
 #include "mob.hh"
 #include "pathfinding.hh"
+#include "mobs/foot_soldier.hh"
+#include "mobs/horse_soldier.hh"
+#include "mobs/tank_soldier.hh"
+
+sf::Texture FootSoldier::foot_texture_;
+char FootSoldier::initialized;
+sf::Texture HorseSoldier::horse_texture_;
+char HorseSoldier::initialized;
+sf::Texture TankSoldier::tank_texture_;
+char TankSoldier::initialized;
 
 Mob::Mob(unsigned life, float x, float y, float direction, float speed,
          bool can_fly, unsigned fixed_res, unsigned reward, unsigned power,
@@ -56,9 +66,16 @@ void Mob::move()
     }
 }
 
+
+void Mob::attack()
+{
+}
+
 void Mob::update_pathfinding()
 {
     std::pair<int, int> t(this->x_, this->y_);
+    std::cout << "Starting from (" << t.first << "," <<  t.second << ")" << std::endl;
+    std::cout << "We're going to (" << Map::finish_mobs.first << "," <<  Map::finish_mobs.second << ")" << std::endl;
     this->path_ = pathfind(t, Map::finish_mobs);
     old_x_ = -1;
     old_y_ = -1;
