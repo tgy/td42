@@ -3,6 +3,7 @@
 #include <cfloat>
 
 #include "map.hh"
+#include "player.hh"
 #include "mob.hh"
 #include "pathfinding.hh"
 #include "mobs/foot_soldier.hh"
@@ -65,6 +66,12 @@ void Mob::move()
 void Mob::attack(unsigned elapsed_ms)
 {
     ++elapsed_ms;
+}
+
+void Mob::harakiri()
+{
+    Player::add_money(reward_);
+    life_ = 0;
 }
 
 void Mob::update_pathfinding()

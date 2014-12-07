@@ -18,6 +18,7 @@ class Mob : public Entity
         unsigned get_reward();
         void attack(unsigned elapsed_ms) override;
         void move();
+        void harakiri() override;
         void update_pathfinding();
 
     protected:

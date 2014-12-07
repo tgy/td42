@@ -1,7 +1,7 @@
 BUILDIR=build
 
 all: ${BUILDIR}
-	cd ${BUILDIR} && cmake .. && make debug
+	cd ${BUILDIR} && cmake .. && make
 
 debug: ${BUILDIR}
 	cd ${BUILDIR} && cmake .. && make debug

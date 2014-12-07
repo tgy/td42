@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <utility>
+#include "player.hh"
 #include "map.hh"
 #include "entity.hh"
 
