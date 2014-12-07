@@ -2,7 +2,25 @@
 
 #include "event_handler.hh"
 
-void EventHandler::call_handler(sf::RenderWindow& w)
+void EventHandler::call_handler(sf::RenderWindow& w,
+                                std::shared_ptr<GameState> g)
+{
+    if (std::shared_ptr<MenuState> m = dynamic_cast<std::shared_ptr<MenuState>>(g))
+    {
+        handle_menustate(w, m);
+    }
+    else if (PlayState* p = dynamic_cast<PlayState*>(g))
+    {
+        handle_playstate(w, p);
+    }
+    else
+    {
+        StartState* s = dynamic_cast<StartState*>(g);
+        handle_startstate(w, s);
+    }
+}
+
+void EventHandler::handle_menustate(sf::RenderWindow& w, MenuState*)
 {
     sf::Event event;
     while (w.pollEvent(event))
@@ -27,7 +45,6 @@ void EventHandler::call_handler(sf::RenderWindow& w)
             case sf::Event::MouseButtonPressed:
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-
                 }
                 break;
             case sf::Event::Closed:

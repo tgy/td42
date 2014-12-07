@@ -41,11 +41,11 @@ int main()
     for (unsigned t; window.isOpen() && !GameState::stack.empty();)
     {
         start_time = std::chrono::system_clock::now();
+        auto state = GameState::stack.back();
         // Process events
-        EventHandler::call_handler(window);
+        EventHandler::call_handler(window, state);
         // Clear screen
         window.clear();
-        auto state = GameState::stack.back();
         state->update(elapsed_time * 1000);
         state->draw(window);
         // Update the window
