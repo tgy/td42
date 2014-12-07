@@ -37,12 +37,13 @@ PlayState::PlayState(std::string map)
     this->levels.push_back(Level("resources/levels/5.td42"));
     ms_before_next_level = 100;
     ms_before_next_mob = TIME_BETWEEN_MOBS;
-    if (!toogy_content_.loadFromFile("resources/logo.png"))
+    if (!toogy_content_.loadFromFile("resources/towerselection.png"))
         throw std::logic_error("Could not load logo.");
     sf::Sprite t(toogy_content_);
     toogy_tres_content_ = t;
-    toogy_tres_content_.setPosition(0, Settings::screen_height
-                                       - toogy_content_.getSize().y);
+    toogy_tres_content_.setPosition(5, Settings::screen_height
+                                       - toogy_content_.getSize().y / 2 - 50);
+    toogy_tres_content_.setScale(0.5, 0.5);
 }
 
 void PlayState::insert_mode(std::shared_ptr<Turret> t)
