@@ -1,8 +1,8 @@
 #ifndef PATHFINDING_HH
 # define PATHFINDING_HH
 
-#include <list>
-#include <utility>
+# include <list>
+# include <utility>
 
 class Map;
 

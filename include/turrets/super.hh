@@ -2,6 +2,7 @@
 # define SUPER_HH
 
 # include <stdexcept>
+
 # include "map.hh"
 # include "turret.hh"
 

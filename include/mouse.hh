@@ -1,8 +1,8 @@
 #ifndef MOUSE_HH
 # define MOUSE_HH
 
-#include <tuple>
-#include <SFML/Graphics.hpp>
+# include <tuple>
+# include <SFML/Graphics.hpp>
 
 class Mouse
 {

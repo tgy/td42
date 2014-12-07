@@ -41,7 +41,7 @@ class Entity
         float direction_;
         float range_;
         sf::Sprite sprite_;
-        sf::Texture *texture_;
+        sf::Texture* texture_;
         sf::Color color_;
 };
 

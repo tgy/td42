@@ -1,7 +1,7 @@
 #ifndef TEXT_DRAWER_HH
 # define TEXT_DRAWER_HH
 
-#include <SFML/Graphics.hpp>
+# include <SFML/Graphics.hpp>
 
 struct TextDrawer
 {

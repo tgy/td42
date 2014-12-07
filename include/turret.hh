@@ -1,6 +1,8 @@
 #ifndef TURRET_HH
 # define TURRET_HH
+
 # include <memory>
+
 # include "entity.hh"
 
 class Turret : public Entity

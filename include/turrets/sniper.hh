@@ -31,5 +31,4 @@ class SniperTurret : public Turret
         }
 };
 
-
 #endif /* !SNIPER_HH */

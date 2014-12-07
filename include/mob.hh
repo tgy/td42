@@ -1,7 +1,9 @@
 #ifndef MOB_HH
 # define MOB_HH
+
 # include <list>
-#include <utility>
+# include <utility>
+
 # include "entity.hh"
 
 class Mob : public Entity

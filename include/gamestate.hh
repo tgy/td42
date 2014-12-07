@@ -1,5 +1,6 @@
 #ifndef GAMESTATE_HH
 # define GAMESTATE_HH
+
 # include <list>
 # include <memory>
 # include <SFML/Graphics.hpp>
