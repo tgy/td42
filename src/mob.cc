@@ -72,6 +72,10 @@ void Mob::update_pathfinding()
     this->path_.clear();
     std::pair<int, int> t(this->x_, this->y_);
     this->path_ = pathfind(t, Map::finish_mobs);
+    std::cout << "Starting path..." << std::endl;
+    for (auto node : path_)
+        std::cout << "Node: " << node.first << "x" << node.second << std::endl;
+    std::cout << "End...." << std::endl;
     old_x_ = -1;
     old_y_ = -1;
 }
