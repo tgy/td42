@@ -46,7 +46,8 @@ void Mob::move()
         std::pair<int, int> next = *path_.begin();
         int px = x_;
         int py = y_;
-        if ((x_ == px && y_ == py) || old_x_ == -1 || old_y_ == -1)
+        if ((next.first == px && next.second == py)
+            || old_x_ == -1 || old_y_ == -1)
         {
             old_x_ = x_;
             old_y_ = y_;
@@ -66,7 +67,6 @@ void Mob::move()
     }
 }
 
-
 void Mob::attack()
 {
 }
@@ -78,6 +78,8 @@ void Mob::update_pathfinding()
     std::cout << "Starting from (" << t.first << "," <<  t.second << ")" << std::endl;
     std::cout << "We're going to (" << Map::finish_mobs.first << "," <<  Map::finish_mobs.second << ")" << std::endl;
     this->path_ = pathfind(t, Map::finish_mobs);
+    for (auto m : this->path_)
+        std::cout << "Point: (" << m.first << "," << m.second << ");" << std::endl;
     old_x_ = -1;
     old_y_ = -1;
 }

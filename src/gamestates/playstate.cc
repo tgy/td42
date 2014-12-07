@@ -28,20 +28,8 @@ PlayState::PlayState(std::string map)
     Map::init_draw(0, 0);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
-    /*for (unsigned i = 0; i < 5; ++i)
-        Map::turrets.push_front(std::make_shared<BasicTurret>(0, i));
-    for (unsigned i = 0; i < 5; ++i)
-        Map::turrets.push_front(std::make_shared<SniperTurret>(1, i));
-    for (unsigned i = 0; i < 5; ++i)
-        Map::turrets.push_front(std::make_shared<SuperTurret>(2, i));
-    for (unsigned i = 0; i < 5; ++i)
-        Map::ennemies.push_front(std::make_shared<FootSoldier>(3, i));
-    for (unsigned i = 0; i < 5; ++i)
-        Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
-    for (unsigned i = 0; i < 5; ++i)
-        Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));*/
     Player::init(42, 10, std::chrono::system_clock::now());
-    this->insert_mode(std::make_shared<SuperTurret>(3, 3));
+    Map::ennemies.push_front(std::make_shared<FootSoldier>(0, 0));
 }
 
 void PlayState::insert_mode(std::shared_ptr<Turret> t)
@@ -81,6 +69,7 @@ void PlayState::exit_insert_mode_and_create()
         turret_ = nullptr;
     }
 }
+
 void PlayState::draw(sf::RenderWindow& w)
 {
     if (turret_ != nullptr)
@@ -124,5 +113,7 @@ void PlayState::update(unsigned elapsed_ms)
     }
     else
         ms_before_next_level -= elapsed_ms;
+    for (const std::shared_ptr<Mob>& m : Map::ennemies)
+        m->move();
     ++elapsed_ms;
 }
