@@ -44,24 +44,21 @@ void Mob::move()
     if (!path_.empty())
     {
         std::pair<int, int> next = *path_.begin();
-        int px = x_;
-        int py = y_;
-        if ((next.first == px && next.second == py)
+        if ((fabs(next.first - x_) < 0.02f && fabs(next.second - y_) < 0.02f)
             || old_x_ == -1 || old_y_ == -1)
         {
-            old_x_ = x_;
-            old_y_ = y_;
+            std::cout << "Count: " << path_.size() << std::endl;
+            old_x_ = next.first;
+            old_y_ = next.second;
             path_.pop_front();
+            std::cout << " (" << next.first << "," << next.second << ") => (" << path_.begin()->first << "," << path_.begin()->second << ");" << std::endl;
             if (path_.empty())
-            {
-                std::cout << "lol" << std::endl;
                 return;
-            }
             next = *path_.begin();
-            float dx = next.first - x_;
+            /*float dx = next.first - x_;
             float dy = next.second - y_;
             float r = sqrt(dx * dx + dy * dy);
-            direction_ = acos(dx / r);
+            direction_ = acos(dx / r);*/
         }
         float dx = (next.first - old_x_) * speed_;
         float dy = (next.second - old_y_) * speed_;

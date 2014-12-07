@@ -29,11 +29,12 @@ PlayState::PlayState(std::string map)
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
     Player::init(42, 10, std::chrono::system_clock::now());
-    this->levels.push_back(Level("resources/levels/1.td42"));
-    this->levels.push_back(Level("resources/levels/2.td42"));
-    this->levels.push_back(Level("resources/levels/3.td42"));
-    this->levels.push_back(Level("resources/levels/4.td42"));
-    this->levels.push_back(Level("resources/levels/5.td42"));
+//    this->levels.push_back(Level("resources/levels/1.td42"));
+//    this->levels.push_back(Level("resources/levels/2.td42"));
+//    this->levels.push_back(Level("resources/levels/3.td42"));
+//    this->levels.push_back(Level("resources/levels/4.td42"));
+//    this->levels.push_back(Level("resources/levels/5.td42"));
+    Map::ennemies.push_front(std::make_shared<FootSoldier>(0, 0));
 
 }
 
@@ -90,7 +91,7 @@ void PlayState::update(unsigned elapsed_ms)
 {
     if (this->levels.size() == 0)
     {
-        std::cout << "victory!!" << std::endl;
+        //std::cout << "victory!!" << std::endl;
         // TODO VICTORY !!!
     }
     else if (ms_before_next_level <= 0)
