@@ -26,16 +26,11 @@ PlayState::PlayState(std::string map)
     if (!MapReader::set_size(map))
         throw std::logic_error("Could not load map '" + map + "'.");
     Map::init();
-    Map::init_draw(100, 100);
-    Map::init_draw(0, 50);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
+    Map::init_draw(0, 50);
     Player::init(500, 10, std::chrono::system_clock::now());
     this->levels.push_back(Level("resources/levels/1.td42"));
-    this->levels.push_back(Level("resources/levels/2.td42"));
-    this->levels.push_back(Level("resources/levels/3.td42"));
-    this->levels.push_back(Level("resources/levels/4.td42"));
-    this->levels.push_back(Level("resources/levels/5.td42"));
     ms_before_next_level = 100;
     ms_before_next_mob = TIME_BETWEEN_MOBS;
 }
@@ -111,7 +106,7 @@ bool is_arrived(float x1, float x2, float y1, float y2)
 
 void PlayState::update(unsigned elapsed_ms)
 {
-    if (this->levels.size() == 0)
+    if (this->levels.size() == 0 && Map::ennemies.empty())
     {
         GameState::stack.pop_back();
         auto ptr = std::make_shared<EndState>();
