@@ -52,30 +52,31 @@ int Map::cost(const std::pair<int, int>& start, const std::pair<int, int>& end)
 std::list<std::pair<int, int>> Map::neighbours(
         const std::pair<int, int>& pos)
 {
-  std::list<std::pair<int, int>> neighbours = {
-    std::make_pair(pos.first + 1, pos.second),
-    std::make_pair(pos.first - 1, pos.second),
-    std::make_pair(pos.first, pos.second + 1),
-    std::make_pair(pos.first, pos.second - 1)
-  };
-
-  for (auto it = neighbours.begin(); it != neighbours.end(); ++it)
-    if (!is_visitable(*it))
-    {
-      it = neighbours.erase(it);
-      --it;
-    }
-
-  return neighbours;
+    std::pair<int, int> tab[4] = {
+        std::make_pair(pos.first + 1, pos.second),
+        std::make_pair(pos.first - 1, pos.second),
+        std::make_pair(pos.first, pos.second + 1),
+        std::make_pair(pos.first, pos.second - 1)
+    };
+    std::list<std::pair<int, int>> neighbours;
+    for (unsigned i = 0; i < 4; ++i)
+        if (is_visitable(tab[i]))
+        {
+            if (rand() % 2)
+                neighbours.push_back(tab[i]);
+            else
+                neighbours.push_front(tab[i]);
+        }
+    return neighbours;
 }
 
 bool Map::is_visitable(const std::pair<int, int>& node)
 {
     return node.first >= 0
-           && static_cast<unsigned long>(node.first) < cells.size()
-           && node.second >= 0
-           && static_cast<unsigned long>(node.second) < cells[0].size()
-           && cells[node.first][node.second].type == CellType::Empty;
+        && static_cast<unsigned long>(node.first) < cells.size()
+        && node.second >= 0
+        && static_cast<unsigned long>(node.second) < cells[0].size()
+        && cells[node.first][node.second].type == CellType::Empty;
 }
 
 void Map::print(std::ostream& out)
@@ -192,8 +193,8 @@ void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)
         {
             if (t == nullptr || **ti < *t)
             {
-            (*ti)->draw(w);
-            ++ti;
+                (*ti)->draw(w);
+                ++ti;
             }
             else
             {

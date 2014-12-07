@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include <unistd.h>
+#include <time.h>
 
 #include "settings.hh"
 #include "gamestate.hh"
@@ -20,6 +21,7 @@ void init()
 {
     std::shared_ptr<StartState> ptr = std::make_shared<StartState>();
     GameState::stack.push_back(ptr);
+    srand(time(NULL));
 }
 
 int main()
