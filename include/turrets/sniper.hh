@@ -10,7 +10,7 @@ class SniperTurret : public Turret
         static sf::Texture sniper_texture_;
         static char initialized;
         SniperTurret(unsigned x, unsigned y)
-            : Turret(20, x, y, 0, 3000, 5, 20, 7, 0.05f, 0.35f, 69)
+            : Turret(20, x, y, 0, 2000, 5, 20, 7, 0.05f, 0.35f, 100)
         {
             if (initialized == 0)
             {

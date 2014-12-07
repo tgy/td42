@@ -11,7 +11,7 @@ class SuperTurret : public Turret
         static sf::Texture super_texture_;
         static char initialized;
         SuperTurret(unsigned x, unsigned y)
-            : Turret(50, x, y, 0, 2000, 5, 30, 3, 0.05f, 0.40f, 120)
+            : Turret(50, x, y, 0, 1000, 5, 50, 3, 0.05f, 0.40f, 500)
         {
             if (initialized == 0)
             {
