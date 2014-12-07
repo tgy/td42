@@ -41,8 +41,12 @@ void StartState::update(unsigned elapsed_ms)
     logo_sprite_.setScale(logo_size_, logo_size_);
     if (wait_time_ <= 0)
     {
+        std::string default_map_path = "resources/map0.td42";
+        std::string map_path;
+        std::cout << "Enter map path (defaults to 'resources/map0.td42')";
+        getline(std::cin, map_path);
         GameState::stack.pop_back();
-        GameState::stack.push_back(
-            std::make_shared<PlayState>("resources/map0.td42"));
+        GameState::stack.push_back(std::make_shared<PlayState>(
+            map_path.length() > 0 ? map_path : default_map_path));
     }
 }
