@@ -18,7 +18,11 @@ Level::Level(std::string path)
     if (infile.fail())
         this->series_ = "1122132233232223333311233";
     else
-        std::getline(infile, this->series_);
+    {
+        std::string lol;
+        std::getline(infile, lol);
+        this->series_ = lol;
+    }
 }
 
 bool Level::make_mob()
