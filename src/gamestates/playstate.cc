@@ -31,6 +31,10 @@ PlayState::PlayState(std::string map)
     Map::init_draw(0, 50);
     Player::init(500, 10, std::chrono::system_clock::now());
     this->levels.push_back(Level("resources/levels/1.td42"));
+    this->levels.push_back(Level("resources/levels/2.td42"));
+    this->levels.push_back(Level("resources/levels/3.td42"));
+    this->levels.push_back(Level("resources/levels/4.td42"));
+    this->levels.push_back(Level("resources/levels/5.td42"));
     ms_before_next_level = 100;
     ms_before_next_mob = TIME_BETWEEN_MOBS;
 }
@@ -58,13 +62,22 @@ void PlayState::exit_insert_mode_and_create()
         }
         auto pos = turret_->get_pos();
         if (pos.first < 0 || pos.first >= Map::width || pos.second < 0
-                || pos.second >= Map::height
-                || Map::cells[pos.first][pos.second].type != CellType::Empty)
+            || pos.second >= Map::height
+            || (Map::cells[pos.first][pos.second].type != CellType::Empty
+           && Map::cells[pos.first][pos.second].type != Obstacle))
         {
             turret_ = nullptr;
             return;
         }
+        auto t = Map::cells[pos.first][pos.second].type;
         Map::cells[pos.first][pos.second].type = CellType::Tower;
+        auto list = pathfind(Map::start_mobs, Map::finish_mobs);
+        if (list.size() == 0)
+        {
+            Map::cells[pos.first][pos.second].type = t;
+            turret_ = nullptr;
+            return;
+        }
         turret_->set_opacity(255);
         Map::turrets.push_front(turret_);
         turret_ = nullptr;
