@@ -41,7 +41,7 @@ std::chrono::time_point<std::chrono::system_clock> Player::get_start_time()
 
 bool Player::remove_a_life()
 {
-    assert(!life_nb_);
-    life_nb_--;
+    if (life_nb_ > 0)
+        life_nb_--;
     return life_nb_ > 0;
 }

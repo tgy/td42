@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <memory>
+#include <cmath>
 #include <cassert>
 #include <iostream>
 
@@ -110,7 +111,25 @@ void PlayState::update(unsigned elapsed_ms)
     }
     else
         ms_before_next_level -= elapsed_ms;
-    for (const std::shared_ptr<Mob>& m : Map::ennemies)
-        m->move();
+    for (std::list<std::shared_ptr<Mob>>::iterator i = Map::ennemies.begin();
+         i != Map::ennemies.end();)
+    {
+        (*i)->move();
+        auto pos = (*i)->get_pos();
+        float dx = fabs(pos.first - Map::finish_mobs.first);
+        float dy = fabs(pos.second - Map::finish_mobs.second);
+        if (dx < 0.02f && dy < 0.02f)
+        {
+            (*i)->harakiri();
+            if (!Player::remove_a_life())
+            {
+                std::cout << "U LOST BICTH" << std::endl;
+                //FIXME: we lost. :(
+            }
+            i = Map::ennemies.erase(i);
+        }
+        else
+            ++i;
+    }
     ++elapsed_ms;
 }

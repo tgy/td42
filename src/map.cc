@@ -130,10 +130,8 @@ void Map::init_draw(float x1, float y1)
             cells[x][y].sprite.setPosition(pos_x, pos_y);
             cells[x][y].sprite.setScale(scale_x, scale_y);
             //TODO: delete this
-#if DEBUG
             sf::Color c(rand() % 256, rand() % 256, rand() % 256, 255);
             cells[x][y].sprite.setColor(c);
-#endif
         }
     }
     off_x_ = x1;
