@@ -7,6 +7,7 @@
 #include "settings.hh"
 #include "map_reader.hh"
 #include "player.hh"
+#include "mouse.hh"
 #include "map.hh"
 #include "text_drawer.hh"
 #include "turrets/basic.hh"
@@ -18,6 +19,7 @@
 #include "pathfinding.hh"
 
 PlayState::PlayState(std::string map)
+         : turret_{nullptr}
 {
     if (!MapReader::set_size(map))
         throw std::logic_error("Could not load map '" + map + "'.");
@@ -38,12 +40,51 @@ PlayState::PlayState(std::string map)
         Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
     for (unsigned i = 0; i < 5; ++i)
         Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));*/
-    Player::init(5000, 10, std::chrono::system_clock::now());
+    Player::init(42, 10, std::chrono::system_clock::now());
+    this->insert_mode(std::make_shared<SuperTurret>(3, 3));
 }
 
+void PlayState::insert_mode(std::shared_ptr<Turret> t)
+{
+    turret_ = t;
+    t->set_opacity(100);
+}
+
+void PlayState::exit_insert_mode()
+{
+    turret_ = nullptr;
+}
+
+void PlayState::exit_insert_mode_and_create()
+{
+    if (turret_ != nullptr)
+    {
+        auto pos = turret_->get_pos();
+        if (pos.first < 0 || pos.first >= Map::width || pos.second < 0
+            || pos.second >= Map::height
+            || Map::cells[pos.first][pos.second].type != CellType::Empty)
+        {
+            turret_ = nullptr;
+            return;
+        }
+        Map::cells[pos.first][pos.second].type = CellType::Tower;
+        turret_->set_opacity(255);
+        Map::turrets.push_front(turret_);
+        turret_ = nullptr;
+    }
+}
 void PlayState::draw(sf::RenderWindow& w)
 {
-    Map::draw(w);
+    if (turret_ != nullptr)
+    {
+
+        auto pos = Mouse::get_mouse_pos(w);
+        unsigned px;
+        unsigned py;
+        Map::screen_to_map(pos.first, pos.second, px, py);
+        turret_->set_pos(px, py);
+    }
+    Map::draw(w, turret_);
     TextDrawer::display_time(w);
     TextDrawer::display_lifes(w);
     TextDrawer::display_money(w);

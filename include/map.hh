@@ -50,7 +50,7 @@ class Map
         static unsigned width;
         static unsigned height;
         static void init_draw(float x1, float y1);
-        static void draw(sf::RenderWindow& w);
+        static void draw(sf::RenderWindow& w, std::shared_ptr<Turret> t);
         static void map_to_screen(float x, float y, float& rx, float &ry);
         static void screen_to_map(unsigned x, unsigned y,
                                   unsigned& rx, unsigned& ry);

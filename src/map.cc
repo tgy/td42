@@ -143,7 +143,7 @@ void Map::init_draw(float x1, float y1)
     tile_h_ = tsize_y;
 }
 
-void Map::draw(sf::RenderWindow& w)
+void Map::draw(sf::RenderWindow& w, std::shared_ptr<Turret> t)
 {
     for (unsigned x = 0; x < width; ++x)
         for (unsigned y = 0; y < height; ++y)
@@ -158,21 +158,55 @@ void Map::draw(sf::RenderWindow& w)
     {
         if (ti == te)
             for (; ei != ee; ++ei)
-                (*ei)->draw(w);
+            {
+                if (t == nullptr ||  **ei < *t)
+                    (*ei)->draw(w);
+                else
+                {
+                    t->draw(w);
+                    t = nullptr;
+                }
+            }
         else if (ei == ee)
             for (; ti != te; ++ti)
-                (*ti)->draw(w);
+            {
+                if (t == nullptr || **ti < *t)
+                    (*ti)->draw(w);
+                else
+                {
+                    t->draw(w);
+                    t = nullptr;
+                }
+            }
         else if (**ei < **ti)
         {
-            (*ei)->draw(w);
-            ++ei;
+            if (t == nullptr || **ei < *t)
+            {
+                (*ei)->draw(w);
+                ++ei;
+            }
+            else
+            {
+                t->draw(w);
+                t = nullptr;
+            }
         }
         else
         {
+            if (t == nullptr || **ti < *t)
+            {
             (*ti)->draw(w);
             ++ti;
+            }
+            else
+            {
+                t->draw(w);
+                t = nullptr;
+            }
         }
     }
+    if (t != nullptr)
+        t->draw(w);
 }
 
 void Map::map_to_screen(float x, float y, float& rx, float &ry)
