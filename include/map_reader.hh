@@ -5,8 +5,8 @@
 
 class MapReader
 {
-  public:
-    static bool read_map(std::string file);
+    public:
+        static bool read_map(std::string file);
 };
 
 #endif /* MAP_READER_HH */

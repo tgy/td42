@@ -42,8 +42,7 @@ void Map::init(unsigned width, unsigned height)
     Map::height = height;
 }
 
-int Map::cost(const std::pair<int, int>& start,
-              const std::pair<int, int>& end)
+int Map::cost(const std::pair<int, int>& start, const std::pair<int, int>& end)
 {
     int cost = 0;
     if (cells[end.first][end.second].type == CellType::Empty)
@@ -54,7 +53,7 @@ int Map::cost(const std::pair<int, int>& start,
 }
 
 std::list<std::pair<int, int>> Map::neighbours(
-                      const std::pair<int, int>& pos)
+        const std::pair<int, int>& pos)
 {
     std::list<std::pair<int, int>> neighbours = {
         std::make_pair(pos.first + 1, pos.second),
@@ -76,10 +75,10 @@ std::list<std::pair<int, int>> Map::neighbours(
 bool Map::is_visitable(const std::pair<int, int>& node)
 {
     return node.first >= 0
-        && static_cast<unsigned long>(node.first) < cells.size()
-        && node.second >= 0
-        && static_cast<unsigned long>(node.second) < cells[0].size()
-        && cells[node.first][node.second].type == CellType::Empty;
+           && static_cast<unsigned long>(node.first) < cells.size()
+           && node.second >= 0
+           && static_cast<unsigned long>(node.second) < cells[0].size()
+           && cells[node.first][node.second].type == CellType::Empty;
 }
 
 void Map::print(std::ostream& out)
@@ -114,9 +113,9 @@ void Map::init_draw(float x1, float y1, float x2, float y2)
 {
     textures_ = std::vector<sf::Texture>(4);
     if (!textures_[Blocking_obstacle].loadFromFile("resources/tiles/block.png")
-        || !textures_[Obstacle].loadFromFile("resources/tiles/obstacle.png")
-        || !textures_[Empty].loadFromFile("resources/tiles/empty.png")
-        || !textures_[Tower].loadFromFile("resources/tiles/empty.png"))
+            || !textures_[Obstacle].loadFromFile("resources/tiles/obstacle.png")
+            || !textures_[Empty].loadFromFile("resources/tiles/empty.png")
+            || !textures_[Tower].loadFromFile("resources/tiles/empty.png"))
         throw std::logic_error("Could not load tile1.");
     float tsize_x = (x2 - x1) / width;
     float tsize_y = (y2 - y1) / height;

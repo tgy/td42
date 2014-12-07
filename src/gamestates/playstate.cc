@@ -10,11 +10,11 @@ PlayState::PlayState()
 
 void PlayState::draw(sf::RenderWindow& w)
 {
-  Map::draw(w);
+    Map::draw(w);
 }
 
 
 void PlayState::update(unsigned elapsed_ms)
 {
-  ++elapsed_ms;
+    ++elapsed_ms;
 }

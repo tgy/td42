@@ -7,10 +7,10 @@
 
 class GameState
 {
-  public:
-    virtual void draw(sf::RenderWindow& w) = 0;
-    virtual void update(unsigned elapsed_ms) = 0;
-    static std::list<std::shared_ptr<GameState>> stack;
+    public:
+        virtual void draw(sf::RenderWindow& w) = 0;
+        virtual void update(unsigned elapsed_ms) = 0;
+        static std::list<std::shared_ptr<GameState>> stack;
 };
 
 #endif /* !GAMESTATE_HH */

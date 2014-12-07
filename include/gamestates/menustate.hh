@@ -4,12 +4,12 @@
 
 class MenuState : public GameState
 {
-  public:
-    MenuState();
-    virtual ~MenuState() = default;
-    void draw(sf::RenderWindow& w);
-    void update(unsigned elapsed_ms);
-  protected:
+    public:
+        MenuState();
+        virtual ~MenuState() = default;
+        void draw(sf::RenderWindow& w);
+        void update(unsigned elapsed_ms);
+    protected:
 };
 
 #endif /* !MENUSTATE_HH */
