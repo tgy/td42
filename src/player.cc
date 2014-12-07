@@ -21,7 +21,12 @@ void Player::add_money(unsigned money)
 
 bool Player::remove_money(unsigned money)
 {
-    return money_ >= money ? money_ -= money : false;
+    if (money_ >= money)
+    {
+        money_ -= money;
+        return true;
+    }
+    return false;
 }
 
 unsigned Player::get_life_nb()

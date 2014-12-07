@@ -11,7 +11,7 @@ class BasicTurret : public Turret
         static sf::Texture basic_texture_;
         static char initialized;
         BasicTurret(unsigned x, unsigned y)
-            : Turret(10, x, y, 0, 1000, 0, 10, 5, 0.05f, 0.45f)
+            : Turret(10, x, y, 0, 1000, 0, 10, 5, 0.05f, 0.45f, 42)
         {
             if (initialized == 0)
             {
