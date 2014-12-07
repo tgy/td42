@@ -27,8 +27,8 @@ void init()
 int main()
 {
     // Create the main window
-    Settings::screen_width = 1000;
-    Settings::screen_height = 600;
+    Settings::screen_width = 1368;
+    Settings::screen_height = 768;
     sf::RenderWindow window(sf::VideoMode(Settings::screen_width,
                 Settings::screen_height), "TD42");
     // Init
@@ -48,6 +48,7 @@ int main()
         EventHandler::call_handler(window, state);
         // Clear screen
         window.clear();
+        std::cout << "Time: " << elapsed_time * 1000  << std::endl;
         state->update(elapsed_time * 1000);
         state->draw(window);
         // Update the window
