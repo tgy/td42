@@ -29,6 +29,12 @@ PlayState::PlayState(std::string map)
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
     Player::init(42, 10, std::chrono::system_clock::now());
+    this->levels.push_back(Level("resources/levels/1.td42"));
+    this->levels.push_back(Level("resources/levels/2.td42"));
+    this->levels.push_back(Level("resources/levels/3.td42"));
+    this->levels.push_back(Level("resources/levels/4.td42"));
+    this->levels.push_back(Level("resources/levels/5.td42"));
+
 }
 
 void PlayState::insert_mode(std::shared_ptr<Turret> t)
@@ -40,13 +46,6 @@ void PlayState::insert_mode(std::shared_ptr<Turret> t)
 void PlayState::exit_insert_mode()
 {
     turret_ = nullptr;
-
-    this->levels.push_back(Level("resources/levels/1.td42"));
-    this->levels.push_back(Level("resources/levels/2.td42"));
-    this->levels.push_back(Level("resources/levels/3.td42"));
-    this->levels.push_back(Level("resources/levels/4.td42"));
-    this->levels.push_back(Level("resources/levels/5.td42"));
-
     ms_before_next_level = 100;
 }
 
@@ -73,7 +72,6 @@ void PlayState::draw(sf::RenderWindow& w)
 {
     if (turret_ != nullptr)
     {
-
         auto pos = Mouse::get_mouse_pos(w);
         unsigned px;
         unsigned py;

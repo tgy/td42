@@ -53,7 +53,10 @@ void Mob::move()
             old_y_ = y_;
             path_.pop_front();
             if (path_.empty())
+            {
+                std::cout << "lol" << std::endl;
                 return;
+            }
             next = *path_.begin();
             float dx = next.first - x_;
             float dy = next.second - y_;
@@ -75,7 +78,11 @@ void Mob::update_pathfinding()
 {
     this->path_.clear();
     std::pair<int, int> t(this->x_, this->y_);
+    std::cout << "Starting from (" << t.first << "," <<  t.second << ")" << std::endl;
+    std::cout << "We're going to (" << Map::finish_mobs.first << "," <<  Map::finish_mobs.second << ")" << std::endl;
     this->path_ = pathfind(t, Map::finish_mobs);
+    for (auto m : this->path_)
+        std::cout << "Point: (" << m.first << "," << m.second << ");" << std::endl;
     old_x_ = -1;
     old_y_ = -1;
 }
