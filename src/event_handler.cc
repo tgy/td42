@@ -58,19 +58,15 @@ void EventHandler::handle_playstate(sf::RenderWindow& w,
                         s->exit_insert_mode();
                         break;
                     case sf::Keyboard::Q:
-                        std::cout << "Q !!" << std::endl;
                         s->insert_mode(std::make_shared<BasicTurret>(0, 0));
                         break;
                     case sf::Keyboard::W:
-                        std::cout << "W !!" << std::endl;
                         s->insert_mode(std::make_shared<SniperTurret>(0, 0));
                         break;
                     case sf::Keyboard::E:
-                        std::cout << "E !!" << std::endl;
                         s->insert_mode(std::make_shared<SuperTurret>(0, 0));
                         break;
                     case sf::Keyboard::Space:
-                        std::cout << "PAUSE" << std::endl;
                         break;
                     default:
                         break;

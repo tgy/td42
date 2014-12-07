@@ -45,7 +45,6 @@ float Entity::get_range()
 
 void Entity::take_attack(unsigned power)
 {
-    std::cout << "Attaque: " << power << " rf: " << fixed_res_ << std::endl;
     if (power <= this->fixed_res_)
         return;
 
