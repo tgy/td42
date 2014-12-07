@@ -27,7 +27,6 @@ float Map::off_y_;
 float Map::tile_w_;
 float Map::tile_h_;
 
-
 void Map::init()
 {
     cells = std::vector<std::vector<Cell>>(width);
@@ -217,6 +216,6 @@ void Map::map_to_screen(float x, float y, float& rx, float &ry)
 
 void Map::screen_to_map(unsigned x, unsigned y, unsigned& rx, unsigned& ry)
 {
-    rx = (x + Map::off_x_)/ Map::tile_w_;
-    ry = (y + Map::off_y_) / Map::tile_h_;
+    rx = (x - Map::off_x_) / Map::tile_w_;
+    ry = (y - Map::off_y_) / Map::tile_h_;
 }

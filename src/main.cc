@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include <unistd.h>
@@ -11,6 +10,7 @@
 #include "map.hh"
 #include "pathfinding.hh"
 #include "map_reader.hh"
+#include "event_handler.hh"
 
 #define FPS 60
 
@@ -42,16 +42,7 @@ int main()
     {
         start_time = std::chrono::system_clock::now();
         // Process events
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            // Close window : exit
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-                break;
-            }
-        }
+        EventHandler::call_handler(window);
         // Clear screen
         window.clear();
         auto state = GameState::stack.back();
