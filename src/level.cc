@@ -31,8 +31,6 @@ bool Level::make_mob()
 
     char c = this->series_[0];
 
-    std::cout << "making mobe " << c << std::endl;
-
     switch (c)
     {
         case '1':
