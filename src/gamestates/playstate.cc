@@ -95,8 +95,9 @@ void PlayState::update(unsigned elapsed_ms)
 {
     if (this->levels.size() == 0)
     {
-        std::cout << "victory!!" << std::endl;
-        // TODO VICTORY !!!
+        GameState::stack.pop_back();
+        auto ptr = std::make_shared<EndState>();
+        GameState::stack.push_back(ptr);
     }
     else if (ms_before_next_level <= 0)
     {
@@ -131,7 +132,6 @@ void PlayState::update(unsigned elapsed_ms)
                 (*i)->harakiri();
                 if (!Player::remove_a_life())
                 {
-                std::cout << "U LOST!" << std::endl;
                     GameState::stack.pop_back();
                     auto ptr = std::make_shared<EndState>();
                     GameState::stack.push_back(ptr);
