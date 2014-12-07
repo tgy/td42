@@ -29,7 +29,7 @@ PlayState::PlayState(std::string map)
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
     Map::init_draw(0, 50);
-    Player::init(500, 10, std::chrono::system_clock::now());
+    Player::init(150, 10, std::chrono::system_clock::now());
     this->levels.push_back(Level("resources/levels/1.td42"));
     this->levels.push_back(Level("resources/levels/2.td42"));
     this->levels.push_back(Level("resources/levels/3.td42"));
