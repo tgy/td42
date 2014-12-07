@@ -54,9 +54,9 @@ std::list<std::pair<int, int>> Map::neighbours(
 {
   std::list<std::pair<int, int>> neighbours = {
     std::make_pair(pos.first + 1, pos.second),
-    std::make_pair(pos.first + 1, pos.second + 1),
+    std::make_pair(pos.first - 1, pos.second),
     std::make_pair(pos.first, pos.second + 1),
-    std::make_pair(pos.first, pos.second + 1)
+    std::make_pair(pos.first, pos.second - 1)
   };
 
   for (auto it = neighbours.begin(); it != neighbours.end(); ++it)
