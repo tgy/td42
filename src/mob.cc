@@ -22,6 +22,7 @@ Mob::Mob(unsigned life, float x, float y, float direction, float speed,
    : Entity(life, x, y, direction, fixed_res, power, range, off_x, off_y),
            can_fly_{can_fly}, reward_{reward}, old_x_{-1}, old_y_{-1}
 {
+    speed /= 300;
     if (speed <= 0 || speed >= 1)
         speed_ = 0.1f;
     else
@@ -47,18 +48,12 @@ void Mob::move()
         if ((fabs(next.first - x_) < 0.02f && fabs(next.second - y_) < 0.02f)
             || old_x_ == -1 || old_y_ == -1)
         {
-            std::cout << "Count: " << path_.size() << std::endl;
             old_x_ = next.first;
             old_y_ = next.second;
             path_.pop_front();
-            std::cout << " (" << next.first << "," << next.second << ") => (" << path_.begin()->first << "," << path_.begin()->second << ");" << std::endl;
             if (path_.empty())
                 return;
             next = *path_.begin();
-            /*float dx = next.first - x_;
-            float dy = next.second - y_;
-            float r = sqrt(dx * dx + dy * dy);
-            direction_ = acos(dx / r);*/
         }
         float dx = (next.first - old_x_) * speed_;
         float dy = (next.second - old_y_) * speed_;
