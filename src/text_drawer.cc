@@ -18,7 +18,7 @@ void TextDrawer::display_money(sf::RenderWindow& w)
     sf::Font f;
     f.loadFromFile("resources/GoodDog.otf");
     text.setFont(f);
-    text.setPosition(142, 666);
+    text.setPosition(50, 0);
 
     text.setCharacterSize(24);
 
@@ -62,8 +62,8 @@ void TextDrawer::display_time(sf::RenderWindow& w)
 
     std::chrono::duration<double> elapsed = std::chrono::system_clock::now() -
                                             Player::get_start_time();
-    //std::cout << elapsed.count() << std::endl;
-    text.setString(std::to_string(elapsed.count()));
+    int seconds = elapsed.count();
+    text.setString(std::to_string(seconds));
     sf::Font f;
     f.loadFromFile("resources/GoodDog.otf");
     text.setFont(f);
@@ -71,7 +71,7 @@ void TextDrawer::display_time(sf::RenderWindow& w)
 
     text.setCharacterSize(24);
 
-    text.setColor(sf::Color::Blue);
+    text.setColor(sf::Color::Green);
 
     //text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 

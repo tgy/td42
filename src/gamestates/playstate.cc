@@ -36,6 +36,7 @@ PlayState::PlayState(std::string map)
         Map::ennemies.push_front(std::make_shared<HorseSoldier>(4, i));
     for (unsigned i = 0; i < 5; ++i)
         Map::ennemies.push_front(std::make_shared<TankSoldier>(5, i));
+    Player::init(42, 10, std::chrono::system_clock::now());
 }
 
 void PlayState::draw(sf::RenderWindow& w)
@@ -65,7 +66,6 @@ void PlayState::draw(sf::RenderWindow& w)
 
     //std::this_thread::sleep_for(std::chrono::seconds(1));
 }
-
 
 void PlayState::update(unsigned elapsed_ms)
 {
