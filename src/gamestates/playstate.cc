@@ -96,6 +96,19 @@ void PlayState::draw(sf::RenderWindow& w)
     TextDrawer::display_mouse_coords_on_map(w);
 }
 
+bool is_arrived(float x1, float x2, float y1, float y2)
+{
+    int ix1 = x1;
+    int ix2 = x2;
+    int iy1 = y1;
+    int iy2 = y2;
+    if (ix1 == ix2 && iy1 == iy2)
+        return true;
+    float dx = fabs(x1 - x2);
+    float dy = fabs(y1 - y2);
+    return dx < 0.2f && dy < 0.2f;
+}
+
 void PlayState::update(unsigned elapsed_ms)
 {
     if (this->levels.size() == 0)
@@ -131,14 +144,13 @@ void PlayState::update(unsigned elapsed_ms)
         {
             (*i)->move();
             auto pos = (*i)->get_pos();
-            float dx = fabs(pos.first - Map::finish_mobs.first);
-            float dy = fabs(pos.second - Map::finish_mobs.second);
-            if (dx < 0.02f && dy < 0.02f)
+            if (is_arrived(pos.first, Map::finish_mobs.first,
+                           pos.second, Map::finish_mobs.second))
             {
+                std::cout << "xd" << std::endl;
                 (*i)->harakiri();
                 if (!Player::remove_a_life())
                 {
-                    std::cout << "U LOST!" << std::endl;
                     GameState::stack.pop_back();
                     auto ptr = std::make_shared<EndState>();
                     GameState::stack.push_back(ptr);
