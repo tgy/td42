@@ -108,7 +108,6 @@ void PlayState::draw(sf::RenderWindow& w)
     TextDrawer::display_money(w);
     TextDrawer::display_mouse_coords(w);
     TextDrawer::display_mouse_coords_on_map(w);
-    w.clear();
     w.draw(toogy_tres_content_);
 }
 
