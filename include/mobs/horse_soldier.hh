@@ -12,7 +12,7 @@ class HorseSoldier : public Mob
         static sf::Texture horse_texture_;
         static char initialized;
         HorseSoldier(unsigned x, unsigned y)
-            : Mob(20, x, y, 0, 20, 0, 3, 20, 0, 0, -0.07f, 0.25f)
+            : Mob(20, x, y, 0, 20, 0, 3, 10, 0, 0, -0.07f, 0.25f)
         {
             if (initialized == 0)
             {
