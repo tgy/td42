@@ -4,8 +4,9 @@
 
 class SniperTurret : public Turret
 {
+    public:
         SniperTurret(unsigned x, unsigned y)
-        : Turret(20, x, y, 0, 300, 5, 30, 3, 0, 0)
+            : Turret(20, x, y, 0, 300, 5, 30, 3, 0, 0)
         {}
 };
 

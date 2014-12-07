@@ -95,7 +95,7 @@ void Entity::draw(sf::RenderWindow& w)
         return;
     float px;
     float py;
-    Map::map_to_screen(x_, y_, px, py);
+    Map::map_to_screen(x_ + 0.5f, y_ + 0.5f, px, py);
     px += off_x_;
     py += off_y_;
     auto pos = texture_->getSize();

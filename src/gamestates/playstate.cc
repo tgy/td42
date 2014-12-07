@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <memory>
 #include <cassert>
 #include <iostream>
 
@@ -8,6 +9,7 @@
 #include "player.hh"
 #include "map.hh"
 #include "text_drawer.hh"
+#include "turrets/basic.hh"
 
 PlayState::PlayState(std::string map)
 {
@@ -17,6 +19,7 @@ PlayState::PlayState(std::string map)
     Map::init_draw(0, 0, Settings::screen_width, Settings::screen_height);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");
+    Map::turrets.push_front(std::make_shared<BasicTurret>(0, 0));
 }
 
 void PlayState::draw(sf::RenderWindow& w)
