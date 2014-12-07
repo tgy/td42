@@ -25,7 +25,6 @@ void StartState::draw(sf::RenderWindow& w)
 
 void StartState::update(unsigned elapsed_ms)
 {
-
     // Initialisation of
     if (logo_size_ < logo_final_size_)
     {
@@ -43,6 +42,7 @@ void StartState::update(unsigned elapsed_ms)
     if (wait_time_ <= 0)
     {
         GameState::stack.pop_back();
-        GameState::stack.push_back(std::make_shared<PlayState>("resources/map0.td42"));
+        GameState::stack.push_back(
+            std::make_shared<PlayState>("resources/map0.td42"));
     }
 }

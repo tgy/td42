@@ -74,7 +74,6 @@ void Mob::attack()
 void Mob::update_pathfinding()
 {
     this->path_.clear();
-    return;
     std::pair<int, int> t(this->x_, this->y_);
     std::cout << "Starting from (" << t.first << "," <<  t.second << ")" << std::endl;
     std::cout << "We're going to (" << Map::finish_mobs.first << "," <<  Map::finish_mobs.second << ")" << std::endl;

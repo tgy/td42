@@ -15,12 +15,19 @@
 #include "mobs/foot_soldier.hh"
 #include "mobs/horse_soldier.hh"
 #include "mobs/tank_soldier.hh"
+#include "pathfinding.hh"
 
 PlayState::PlayState(std::string map)
 {
     if (!MapReader::set_size(map))
         throw std::logic_error("Could not load map '" + map + "'.");
     Map::init();
+    Map::print(std::cout);
+    std::pair<int, int> start(0, 0), end(4, 4);
+    std::list<std::pair<int, int>> path = pathfind(start, end);
+    for (const auto& node : path)
+        Map::cells[node.first][node.second].type = CellType::Obstacle;
+    Map::print(std::cout);
     Map::init_draw(100, 100);
     if (!MapReader::read_map(map))
         throw std::logic_error("Error reading map '" + map + "'.");

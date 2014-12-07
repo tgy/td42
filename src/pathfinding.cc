@@ -46,6 +46,9 @@ list<pair<int, int>> pathfind(const pair<int, int>& start,
         }
     }
 
+    if (came_from.find(end) == came_from.end())
+        return {};
+
     pair<int, int> current = end;
     list<pair<int, int>> path = { current };
 
